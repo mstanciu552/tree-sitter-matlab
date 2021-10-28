@@ -1,0 +1,16 @@
+========================================
+Function definition with no return type.
+========================================
+
+function func_name(param) 
+  a = 3
+end
+
+---
+
+(source_file
+(function_definition 
+  (function_name (identifier))
+  (parameter_list (identifier))
+  (block (expression (identifier)))
+))

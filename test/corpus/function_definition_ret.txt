@@ -1,0 +1,16 @@
+===============================
+Function definition with return
+===============================
+
+function return_type = function_name(params)
+  a = 3
+end
+
+---
+(source_file
+(function_definition
+  (return_variable (identifier))
+  (function_name (identifier))
+  (parameter_list (identifier))
+  (block (expression (identifier)))
+))

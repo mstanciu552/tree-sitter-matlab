@@ -3,41 +3,42 @@ module.exports = grammar({
   name: "matlab",
 
   rules: {
-    source_file: $ => repeat($.statement),
+    source_file: $ => repeat($._statement),
     expression: $ => seq($.identifier, $._operator, $._number),
-    statement: $ => choice($.expression, $.function_definition),
+    _statement: $ => choice($.expression, $.function_definition),
     function_definition: $ => choice(seq(
-      'function',
+      $._function_keyword,
       $.return_variable,
       optional($._whitespace),
       $._operator,
-      choice('', ' '),
+      optional($._whitespace),
       $.function_name,
       $.parameter_list,
-      $.block,
+      optional($.block),
       $._end
     ), seq(
-      'function',
+      $._function_keyword,
       $.function_name,
       $.parameter_list,
-      $.block,
+      optional($.block),
       $._end
     )),
     return_variable: $ => $.identifier,
     function_name: $ => $.identifier,
     parameter_list: $ => seq(
       '(',
-      choice('', repeat($.identifier)),
+      optional(repeat($.identifier)),
       ')'
     ),
     block: $ => seq(
-      '{',
-      repeat($.statement),
-      '}'
+      '\n',
+      repeat($._statement),
+      '\n'
     ),
-    identifier: $ => new RegExp("[a-zA-Z]+"),
+    identifier: $ => new RegExp("[a-zA-Z_]+"),
     _operator: $ => /[=*+-/%]/,
     _number: $ => /\d+/,
+    _function_keyword: $ => 'function',
     _end: $ => "end",
     _whitespace: $ => ' ',
   },
