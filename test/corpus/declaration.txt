@@ -1,0 +1,13 @@
+================================
+Declarations of variables
+================================
+
+a = 3
+
+---
+
+(source_file
+  (identifier)
+  (operator)
+  (value)
+)

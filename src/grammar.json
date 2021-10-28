@@ -1,0 +1,219 @@
+{
+  "name": "lua",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "statement"
+      }
+    },
+    "expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_number"
+        }
+      ]
+    },
+    "statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_definition"
+        }
+      ]
+    },
+    "function_definition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "return_variable"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_whitespace"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_operator"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ""
+                },
+                {
+                  "type": "STRING",
+                  "value": " "
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "parameter_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_end"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "function"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_name"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "parameter_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_end"
+            }
+          ]
+        }
+      ]
+    },
+    "return_variable": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "function_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "parameter_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ""
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "statement"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z]+"
+    },
+    "_operator": {
+      "type": "PATTERN",
+      "value": "[=*+-/%]"
+    },
+    "_number": {
+      "type": "PATTERN",
+      "value": "\\d+"
+    },
+    "_end": {
+      "type": "STRING",
+      "value": "end"
+    },
+    "_whitespace": {
+      "type": "STRING",
+      "value": " "
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+
