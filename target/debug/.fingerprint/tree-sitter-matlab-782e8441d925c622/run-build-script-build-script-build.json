@@ -1,0 +1,1 @@
+{"rustc":3240119359139614058,"features":"","target":0,"profile":0,"path":0,"deps":[[5482221652080259524,"build_script_build",false,981393884847269043]],"local":[{"RerunIfChanged":{"output":"debug/build/tree-sitter-matlab-782e8441d925c622/output","paths":["src/parser.c"]}}],"rustflags":[],"metadata":0,"config":0,"compile_kind":0}

@@ -1,0 +1,9 @@
+/home/sc0p3/Documents/Projects/Neovim/tree-sitter-matlab/target/debug/deps/tree_sitter-793cb352d84c28b0.rmeta: /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/lib.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/ffi.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/util.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/./bindings.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/../include/tree_sitter/parser.h
+
+/home/sc0p3/Documents/Projects/Neovim/tree-sitter-matlab/target/debug/deps/tree_sitter-793cb352d84c28b0.d: /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/lib.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/ffi.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/util.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/./bindings.rs /home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/../include/tree_sitter/parser.h
+
+/home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/lib.rs:
+/home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/ffi.rs:
+/home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/util.rs:
+/home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/./bindings.rs:
+/home/sc0p3/.cargo/registry/src/github.com-1ecc6299db9ec823/tree-sitter-0.20.0/binding_rust/../include/tree_sitter/parser.h:
