@@ -4,8 +4,10 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => repeat($._statement),
-    expression: $ => seq($.identifier, $._operator, $._number),
+    expression: $ => seq($.identifier, $._operator, choice($._value, $._math_expression), optional(';')),
     _statement: $ => choice($.expression, $.function_definition),
+    _value: $ => choice($._number, $.identifier),
+    _math_expression: $ => seq($._value, $._operator, $._value),
     function_definition: $ => choice(seq(
       $._function_keyword,
       $.return_variable,
@@ -27,7 +29,7 @@ module.exports = grammar({
     function_name: $ => $.identifier,
     parameter_list: $ => seq(
       '(',
-      optional(repeat($.identifier)),
+      optional(repeat(seq($.identifier, optional(',')))),
       ')'
     ),
     block: $ => seq(

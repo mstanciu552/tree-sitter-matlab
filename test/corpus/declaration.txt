@@ -9,3 +9,27 @@ a = 3
 (source_file
   (expression (identifier))
 )
+
+========================================
+Declarations of variables with semicolon
+========================================
+
+a = 3;
+
+---
+
+(source_file
+  (expression (identifier))
+)
+
+========================================
+Declarations of variables as computation
+========================================
+
+a = 3 * f;
+
+---
+
+(source_file
+  (expression (identifier) (identifier))
+)
