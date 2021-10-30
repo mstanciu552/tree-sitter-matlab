@@ -14,6 +14,10 @@
         {
           "type": "function_definition",
           "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
         }
       ]
     }
@@ -76,6 +80,21 @@
     }
   },
   {
+    "type": "operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter_list",
     "named": true,
     "fields": {},
@@ -119,6 +138,10 @@
         },
         {
           "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "operation",
           "named": true
         }
       ]

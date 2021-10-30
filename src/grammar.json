@@ -17,7 +17,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_operator"
+          "name": "_eq"
         },
         {
           "type": "CHOICE",
@@ -46,6 +46,31 @@
         }
       ]
     },
+    "operation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_value"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_operator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_value"
+              }
+            ]
+          }
+        }
+      ]
+    },
     "_statement": {
       "type": "CHOICE",
       "members": [
@@ -56,6 +81,10 @@
         {
           "type": "SYMBOL",
           "name": "function_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "operation"
         }
       ]
     },
@@ -117,7 +146,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_operator"
+              "name": "_eq"
             },
             {
               "type": "CHOICE",
@@ -271,7 +300,11 @@
     },
     "_operator": {
       "type": "PATTERN",
-      "value": "[=*+-/%]"
+      "value": "[*+-/%]"
+    },
+    "_eq": {
+      "type": "STRING",
+      "value": "="
     },
     "_number": {
       "type": "PATTERN",
