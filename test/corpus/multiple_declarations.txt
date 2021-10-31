@@ -12,6 +12,6 @@ d = 33 + a - b;
 (source_file
   (expression (identifier))
   (expression (identifier) (identifier))
-  (expression (operation (identifier) (identifier)))
-  (expression (operation (identifier) (identifier)))
+  (operation (identifier) (identifier))
+  (operation (identifier) (identifier))
 )
