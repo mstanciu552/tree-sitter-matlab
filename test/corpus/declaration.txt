@@ -7,7 +7,7 @@ a = 3
 ---
 
 (source_file
-  (expression (identifier))
+  (expression (identifier) (factor))
 )
 
 ========================================
@@ -19,7 +19,7 @@ a = 3;
 ---
 
 (source_file
-  (expression (identifier))
+  (expression (identifier) (factor))
 )
 
 ========================================
@@ -31,5 +31,5 @@ a = 3 * f;
 ---
 
 (source_file
-  (expression (identifier) (identifier))
+  (expression (identifier) (operation (factor) (factor (identifier))))
 )
