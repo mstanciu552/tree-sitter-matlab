@@ -1,0 +1,27 @@
+========
+Struture
+========
+
+if x > y
+
+end
+
+---
+
+(source_file
+  (structure (operation (factor (identifier)) (factor (identifier))) (block))
+)
+
+==================
+Struture with bool
+==================
+
+if x && y
+
+end
+
+---
+
+(source_file
+  (structure (bool (factor (identifier)) (factor (identifier))) (block))
+)

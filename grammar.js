@@ -3,9 +3,19 @@ module.exports = grammar({
 
   rules: {
     source_file: ($) =>
-      repeat(choice($.expression, $.function_definition, $.function_call)),
+      repeat(
+        choice(
+          $.expression,
+          $.function_definition,
+          $.function_call,
+          $.structure
+        )
+      ),
 
-    // TODO Add function call
+    structure: ($) =>
+      prec.right(
+        seq($._structure_keyword, choice($.operation, $.bool), $.block)
+      ),
 
     function_definition: ($) =>
       prec.right(
@@ -18,7 +28,21 @@ module.exports = grammar({
         )
       ),
 
-    operation: ($) => prec.right(1, seq($.factor, $._operator, $.factor)),
+    bool: ($) =>
+      prec.right(
+        1,
+        seq(
+          optional('('),
+          $.factor,
+          optional(seq($._comparator_equal, $.factor)),
+          choice($._and, $._or, $._diff),
+          $.factor,
+          optional(seq($._comparator_equal, $.factor)),
+          optional(')')
+        )
+      ),
+    operation: ($) =>
+      prec.right(1, seq(optional($._not), $.factor, $._operator, $.factor)),
     expression: ($) =>
       prec(
         2,
@@ -36,6 +60,7 @@ module.exports = grammar({
     function_name: ($) => $.identifier,
     return_value: ($) => $.identifier,
     block: ($) => seq(repeat($.expression), $._end),
+    _structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => /[a-zA-Z_]+/g, // TODO Check for more complex identifiers
     factor: ($) =>
@@ -47,11 +72,16 @@ module.exports = grammar({
 
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
-    _operator: ($) => new RegExp('[+\\-*/%\\^:]'),
+    _operator: ($) => new RegExp('[+\\-*/%\\^:<>]'),
     _number: ($) => /\d+/g,
     _end: ($) => 'end',
     _function_keyword: ($) => 'function',
     vector_definition: ($) =>
       seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
+    _and: ($) => '&&',
+    _or: ($) => '||',
+    _not: ($) => '!',
+    _diff: ($) => '!=',
+    _comparator_equal: ($) => '==',
   },
 });

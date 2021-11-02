@@ -17,6 +17,40 @@
           {
             "type": "SYMBOL",
             "name": "function_call"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "structure"
+          }
+        ]
+      }
+    },
+    "structure": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_structure_keyword"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "operation"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "bool"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "block"
           }
         ]
       }
@@ -75,12 +109,124 @@
         ]
       }
     },
+    "bool": {
+      "type": "PREC_RIGHT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "factor"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_comparator_equal"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "factor"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_and"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_or"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_diff"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "factor"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_comparator_equal"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "factor"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ")"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "operation": {
       "type": "PREC_RIGHT",
       "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_not"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
           {
             "type": "SYMBOL",
             "name": "factor"
@@ -240,6 +386,23 @@
         }
       ]
     },
+    "_structure_keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "STRING",
+          "value": "for"
+        },
+        {
+          "type": "STRING",
+          "value": "while"
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-zA-Z_]+"
@@ -308,7 +471,7 @@
     },
     "_operator": {
       "type": "PATTERN",
-      "value": "[+\\-*/%\\^:]"
+      "value": "[+\\-*/%\\^:<>]"
     },
     "_number": {
       "type": "PATTERN",
@@ -367,6 +530,26 @@
           "value": "]"
         }
       ]
+    },
+    "_and": {
+      "type": "STRING",
+      "value": "&&"
+    },
+    "_or": {
+      "type": "STRING",
+      "value": "||"
+    },
+    "_not": {
+      "type": "STRING",
+      "value": "!"
+    },
+    "_diff": {
+      "type": "STRING",
+      "value": "!="
+    },
+    "_comparator_equal": {
+      "type": "STRING",
+      "value": "=="
     }
   },
   "extras": [
