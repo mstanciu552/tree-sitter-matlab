@@ -9,8 +9,8 @@ end
 ---
 (source_file
 (function_definition
-  (return_variable (identifier))
+  (return_value (identifier))
   (function_name (identifier))
   (parameter_list (identifier))
-  (block (expression (identifier)))
+  (block (expression (identifier) (factor)))
 ))

@@ -15,10 +15,7 @@
         "tree-sitter-cli": "^0.20.0"
     },
     "prettier": {
-        "trailingComma": true,
-        "tabWidth": 4,
         "semi": true,
-        "singleQuote": true,
-        "arrowParens": false
+        "singleQuote": true
     }
 }

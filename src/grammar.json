@@ -4,8 +4,71 @@
     "source_file": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "expression"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function_definition"
+          }
+        ]
+      }
+    },
+    "function_definition": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "_function_keyword"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "return_value"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_eq"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function_name"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "parameter_list"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "block"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
       }
     },
     "operation": {
@@ -75,9 +138,70 @@
         ]
       }
     },
+    "parameter_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "function_name": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "return_value": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_end"
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_]"
+      "value": "[a-zA-Z_]+"
     },
     "factor": {
       "type": "PREC_RIGHT",
@@ -115,6 +239,14 @@
     "_number": {
       "type": "PATTERN",
       "value": "\\d+"
+    },
+    "_end": {
+      "type": "STRING",
+      "value": "end"
+    },
+    "_function_keyword": {
+      "type": "STRING",
+      "value": "function"
     },
     "vector_definition": {
       "type": "SEQ",
