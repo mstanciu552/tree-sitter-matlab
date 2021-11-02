@@ -1,2 +1,1 @@
-while (x && y)
-end
+x(i) = 1;

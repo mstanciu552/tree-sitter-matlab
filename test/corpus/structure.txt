@@ -25,3 +25,16 @@ end
 (source_file
   (structure (bool (factor (identifier)) (factor (identifier))) (block))
 )
+
+========================
+Struture with expression
+========================
+
+for i=1:n
+end
+
+---
+
+(source_file
+  (structure (expression (identifier) (operation (factor) (factor (identifier)))) (block))
+)

@@ -12,9 +12,15 @@ module.exports = grammar({
         )
       ),
 
+    // TODO Add vector access support
+
     structure: ($) =>
       prec.right(
-        seq($._structure_keyword, choice($.operation, $.bool), $.block)
+        seq(
+          $._structure_keyword,
+          choice($.operation, $.bool, $.expression),
+          $.block
+        )
       ),
 
     function_definition: ($) =>
@@ -62,7 +68,7 @@ module.exports = grammar({
     block: ($) => seq(repeat($.expression), $._end),
     _structure_keyword: ($) => choice('if', 'for', 'while'),
 
-    identifier: ($) => /[a-zA-Z_]+/g, // TODO Check for more complex identifiers
+    identifier: ($) => choice(/[a-zA-Z_]+/g, /[a-zA-Z_]+([a-zA-Z_]+)/g), // TODO Check for more complex identifiers
     factor: ($) =>
       prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
     function_call: ($) =>
