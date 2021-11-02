@@ -20,8 +20,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "_end",
+          "named": true
+        },
         {
           "type": "expression",
           "named": true
@@ -121,6 +125,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "_function_keyword",
+          "named": true
+        },
         {
           "type": "block",
           "named": true
@@ -299,7 +307,23 @@
     "named": false
   },
   {
+    "type": "_end",
+    "named": true
+  },
+  {
+    "type": "_function_keyword",
+    "named": true
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
     "type": "for",
+    "named": false
+  },
+  {
+    "type": "function",
     "named": false
   },
   {

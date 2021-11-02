@@ -66,8 +66,13 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "_function_keyword"
+            "type": "ALIAS",
+            "content": {
+              "type": "STRING",
+              "value": "function"
+            },
+            "named": true,
+            "value": "_function_keyword"
           },
           {
             "type": "CHOICE",
@@ -385,8 +390,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_end"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "end"
+          },
+          "named": true,
+          "value": "_end"
         }
       ]
     },

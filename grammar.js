@@ -26,7 +26,7 @@ module.exports = grammar({
     function_definition: ($) =>
       prec.right(
         seq(
-          $._function_keyword,
+          alias('function', $._function_keyword),
           optional(seq($.return_value, $._eq)),
           $.function_name,
           $.parameter_list,
@@ -65,7 +65,7 @@ module.exports = grammar({
     argument_list: ($) => seq('(', repeat(seq($.factor, optional(','))), ')'),
     function_name: ($) => $.identifier,
     return_value: ($) => $.identifier,
-    block: ($) => seq(repeat($.expression), $._end),
+    block: ($) => seq(repeat($.expression), alias('end', $._end)),
     _structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => choice(/[a-zA-Z_]+/g, /[a-zA-Z_]+([a-zA-Z_]+)/g), // TODO Check for more complex identifiers

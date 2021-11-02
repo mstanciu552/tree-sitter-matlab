@@ -1,1 +1,3 @@
-x(i) = 1;
+function example()
+
+end

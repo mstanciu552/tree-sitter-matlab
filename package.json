@@ -17,5 +17,13 @@
     "prettier": {
         "semi": true,
         "singleQuote": true
-    }
+    },
+    "tree-sitter": [
+        {
+            "scope": "source.m",
+            "file-types": [
+                "m"
+            ]
+        }
+    ]
 }
