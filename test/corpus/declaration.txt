@@ -33,3 +33,15 @@ a = 3 * f;
 (source_file
   (expression (identifier) (operation (factor) (factor (identifier))))
 )
+
+===================
+Vector declarations
+===================
+
+a = [1 2 3;1, 2, 3];
+
+---
+
+(source_file
+  (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
+)

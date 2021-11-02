@@ -2,7 +2,10 @@ module.exports = grammar({
   name: 'matlab',
 
   rules: {
-    source_file: ($) => repeat(choice($.expression, $.function_definition)),
+    source_file: ($) =>
+      repeat(choice($.expression, $.function_definition, $.function_call)),
+
+    // TODO Add function call
 
     function_definition: ($) =>
       prec.right(
@@ -29,19 +32,26 @@ module.exports = grammar({
 
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
+    argument_list: ($) => seq('(', repeat(seq($.factor, optional(','))), ')'),
     function_name: ($) => $.identifier,
     return_value: ($) => $.identifier,
     block: ($) => seq(repeat($.expression), $._end),
 
     identifier: ($) => /[a-zA-Z_]+/g, // TODO Check for more complex identifiers
-    factor: ($) => prec.right(choice($._number, $.identifier, $.operation)),
+    factor: ($) =>
+      prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
+    function_call: ($) =>
+      prec.right(
+        seq($.function_name, $.argument_list, optional($._semi_colon))
+      ),
 
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
-    _operator: ($) => new RegExp('[+\\-*/%]'),
+    _operator: ($) => new RegExp('[+\\-*/%\\^:]'),
     _number: ($) => /\d+/g,
     _end: ($) => 'end',
     _function_keyword: ($) => 'function',
-    vector_definition: ($) => seq('[', $.factor, ']'),
+    vector_definition: ($) =>
+      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
   },
 });
