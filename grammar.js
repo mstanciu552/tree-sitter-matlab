@@ -1,27 +1,26 @@
 module.exports = grammar({
-  name: "matlab",
+  name: 'matlab',
 
   rules: {
-    source_file: $ => repeat($.expression),
+    source_file: ($) => repeat($.expression),
 
-    operation: $ => seq($.factor, $._operator, $.factor),
-    expression: $ => seq($.identifier,
-      $._eq, 
-      choice($.operation, $.factor, $.vector_definition),
-      optional($._semi_colon)
-    ),
+    operation: ($) => 
+      prec.right(1, seq($.factor, $._operator, $.factor)),
+    expression: ($) => prec(2, 
+      seq(
+        $.identifier,
+        $._eq,
+        choice($.operation, $.factor, $.vector_definition),
+        optional($._semi_colon)
+      )),
 
-    identifier: $ => /[a-zA-Z_]/g, // TODO Check for more complex identifiers
-    factor: $ => choice($._number, $.identifier),
+    identifier: ($) => /[a-zA-Z_]/g, // TODO Check for more complex identifiers
+    factor: ($) => prec.right(choice($._number, $.identifier, $.operation)),
 
-    _semi_colon: $ => ';',
-    _eq: $ => '=',
-    _operator: $ => new RegExp("[\+\\-\*\/\%]"),
-    _number: $ => /\d+/g,
-    vector_definition: $ => seq(
-      '[',
-      $.factor,
-      ']'
-    ),
-  }
-})
+    _semi_colon: ($) => ';',
+    _eq: ($) => '=',
+    _operator: ($) => new RegExp('[+\\-*/%]'),
+    _number: ($) => /\d+/g,
+    vector_definition: ($) => seq('[', $.factor, ']'),
+  },
+});

@@ -4,14 +4,12 @@ Multiple declarations of variables(operation, expression)
 
 a = 3;
 b = 3 * a;
-c = (a + 3) * b;
-d = 33 + a - b;
+c = a + 3 * b;
 
 ---
 
 (source_file
   (expression (identifier) (factor))
-  (expression (identifier) (operation (identifier) (factor (identifier))))
-  (operation (identifier) (identifier))
-  (expression (identifier) (operation (identifier) (factor (identifier) (identifier))))
+  (expression (identifier) (operation (factor) (factor (identifier))))
+  (expression (identifier) (operation (factor (identifier)) (factor (operation (factor) (factor (identifier))))))
 )

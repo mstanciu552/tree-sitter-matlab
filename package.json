@@ -1,17 +1,24 @@
 {
-  "name": "tree-sitter-matlab",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bindings/node",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Mihai Stanciu",
-  "license": "ISC",
-  "dependencies": {
-    "nan": "^2.15.0"
-  },
-  "devDependencies": {
-    "tree-sitter-cli": "^0.20.0"
-  }
+    "name": "tree-sitter-matlab",
+    "version": "1.0.0",
+    "description": "",
+    "main": "bindings/node",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Mihai Stanciu",
+    "license": "ISC",
+    "dependencies": {
+        "nan": "^2.15.0"
+    },
+    "devDependencies": {
+        "tree-sitter-cli": "^0.20.0"
+    },
+    "prettier": {
+        "trailingComma": true,
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": true,
+        "arrowParens": false
+    }
 }

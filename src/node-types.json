@@ -37,6 +37,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
         }
       ]
     }
