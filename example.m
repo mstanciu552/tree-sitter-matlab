@@ -1,3 +1,3 @@
-function example()
+function ret_val = example()
 
 end

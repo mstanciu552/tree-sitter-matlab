@@ -64,7 +64,7 @@ module.exports = grammar({
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
     argument_list: ($) => seq('(', repeat(seq($.factor, optional(','))), ')'),
     function_name: ($) => $.identifier,
-    return_value: ($) => $.identifier,
+    return_value: ($) => alias('return_value', $.identifier),
     block: ($) => seq(repeat($.expression), alias('end', $._end)),
     _structure_keyword: ($) => choice('if', 'for', 'while'),
 
@@ -89,5 +89,6 @@ module.exports = grammar({
     _not: ($) => '!',
     _diff: ($) => '!=',
     _comparator_equal: ($) => '==',
+    _bool_keywords: ($) => choice('true', 'false'),
   },
 });

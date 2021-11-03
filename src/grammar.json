@@ -376,8 +376,13 @@
       "name": "identifier"
     },
     "return_value": {
-      "type": "SYMBOL",
-      "name": "identifier"
+      "type": "ALIAS",
+      "content": {
+        "type": "STRING",
+        "value": "return_value"
+      },
+      "named": true,
+      "value": "identifier"
     },
     "block": {
       "type": "SEQ",
@@ -573,6 +578,19 @@
     "_comparator_equal": {
       "type": "STRING",
       "value": "=="
+    },
+    "_bool_keywords": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "true"
+        },
+        {
+          "type": "STRING",
+          "value": "false"
+        }
+      ]
     }
   },
   "extras": [

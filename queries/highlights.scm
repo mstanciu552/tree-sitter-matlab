@@ -1,9 +1,8 @@
 ; highlights.scm
+(_function_keyword) @keyword
+(_end) @keyword
+(_structure_keyword) @keyword
+(_bool_keyword) @constant.builtin
 
-[
-  "for"
-  "function"
-  "end"
-  "if"
-  "while"
-] @keyword
+(identifier) @string
+(return_value) @type.builtin

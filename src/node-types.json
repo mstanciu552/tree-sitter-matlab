@@ -319,6 +319,10 @@
     "named": false
   },
   {
+    "type": "false",
+    "named": false
+  },
+  {
     "type": "for",
     "named": false
   },
@@ -328,6 +332,10 @@
   },
   {
     "type": "if",
+    "named": false
+  },
+  {
+    "type": "true",
     "named": false
   },
   {
