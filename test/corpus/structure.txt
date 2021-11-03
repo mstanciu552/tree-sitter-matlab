@@ -9,7 +9,7 @@ end
 ---
 
 (source_file
-  (structure (operation (factor (identifier)) (factor (identifier))) (block))
+  (structure (operation (factor (identifier)) (factor (identifier))))
 )
 
 ==================
@@ -23,7 +23,7 @@ end
 ---
 
 (source_file
-  (structure (bool (factor (identifier)) (factor (identifier))) (block))
+  (structure (bool (factor (identifier)) (factor (identifier))))
 )
 
 ========================
@@ -36,5 +36,21 @@ end
 ---
 
 (source_file
-  (structure (expression (identifier) (operation (factor) (factor (identifier)))) (block))
+  (structure (expression (identifier) (operation (factor) (factor (identifier)))))
+)
+
+===========================
+Struture with bool constant
+===========================
+
+if true
+  a = 3
+end
+
+---
+
+(source_file
+  (structure (block 
+    (expression (identifier) (factor)))
+  )
 )

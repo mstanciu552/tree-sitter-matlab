@@ -42,10 +42,6 @@
       "required": true,
       "types": [
         {
-          "type": "_bool_keywords",
-          "named": true
-        },
-        {
           "type": "factor",
           "named": true
         }
@@ -129,10 +125,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "_function_keyword",
-          "named": true
-        },
         {
           "type": "block",
           "named": true
@@ -250,12 +242,8 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "_structure_keyword",
-          "named": true
-        },
         {
           "type": "block",
           "named": true
@@ -315,27 +303,11 @@
     "named": false
   },
   {
-    "type": "_bool_keywords",
-    "named": true
-  },
-  {
-    "type": "_function_keyword",
-    "named": true
-  },
-  {
-    "type": "_structure_keyword",
-    "named": true
-  },
-  {
     "type": "false",
     "named": false
   },
   {
     "type": "for",
-    "named": false
-  },
-  {
-    "type": "function",
     "named": false
   },
   {

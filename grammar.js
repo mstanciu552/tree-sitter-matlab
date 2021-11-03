@@ -1,6 +1,8 @@
 module.exports = grammar({
   name: 'matlab',
 
+  // TODO Fix queries
+
   rules: {
     source_file: ($) =>
       repeat(
@@ -15,16 +17,17 @@ module.exports = grammar({
     structure: ($) =>
       prec.right(
         seq(
-          alias('_structure_keyword', $._structure_keyword),
-          choice($.operation, $.bool, $.expression),
-          $.block
+          $._structure_keyword,
+          choice($.operation, $.bool, $.expression, $._bool_keywords),
+          optional($.block),
+          $._end
         )
       ),
 
     function_definition: ($) =>
       prec.right(
         seq(
-          alias('function', $._function_keyword),
+          $._function_keyword,
           optional(seq($.return_value, $._eq)),
           $.function_name,
           $.parameter_list,
@@ -36,17 +39,14 @@ module.exports = grammar({
     bool: ($) =>
       prec.right(
         1,
-        choice(
-          seq(
-            optional('('),
-            $.factor,
-            optional(seq($._comparator_equal, $.factor)),
-            choice($._and, $._or, $._diff),
-            $.factor,
-            optional(seq($._comparator_equal, $.factor)),
-            optional(')')
-          ),
-          alias('_bool_keywords', $._bool_keywords)
+        seq(
+          optional('('),
+          $.factor,
+          optional(seq($._comparator_equal, $.factor)),
+          choice($._and, $._or, $._diff),
+          $.factor,
+          optional(seq($._comparator_equal, $.factor)),
+          optional(')')
         )
       ),
     operation: ($) =>
@@ -66,8 +66,8 @@ module.exports = grammar({
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
     argument_list: ($) => seq('(', repeat(seq($.factor, optional(','))), ')'),
     function_name: ($) => $.identifier,
-    return_value: ($) => alias('return_value', $.identifier),
-    block: ($) => prec.right(seq(repeat1(choice($.expression, $.structure)))),
+    return_value: ($) => $.identifier,
+    block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
     _structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => choice(/[a-zA-Z_]+/g, /[a-zA-Z_]+([a-zA-Z_]+)/g), // TODO Check for more complex identifiers
