@@ -10,7 +10,7 @@ end
 
 (source_file
 (function_definition 
-  (function_name (identifier))
+  (identifier)
   (parameter_list (identifier))
-  (block (expression (identifier) (factor)))
+  (block (expression (identifier) (factor))) (end)
 ))

@@ -17,22 +17,22 @@ module.exports = grammar({
     structure: ($) =>
       prec.right(
         seq(
-          $._structure_keyword,
+          field('structure_keyword', $._structure_keyword),
           choice($.operation, $.bool, $.expression, $._bool_keywords),
           optional($.block),
-          $._end
+          field('end', $.end)
         )
       ),
 
     function_definition: ($) =>
       prec.right(
         seq(
-          $._function_keyword,
-          optional(seq($.return_value, $._eq)),
-          $.function_name,
+          field('function_keyword', $._function_keyword),
+          optional(seq(field('return_variable', $.identifier), $._eq)),
+          field('function_name', $.identifier),
           $.parameter_list,
           optional($.block),
-          $._end
+          field('end', $.end)
         )
       ),
 
@@ -55,7 +55,7 @@ module.exports = grammar({
       prec(
         2,
         seq(
-          $.identifier,
+          field('variable_name', $.identifier),
           $._eq,
           choice($.operation, $.factor, $.vector_definition),
           optional($._semi_colon)
@@ -82,7 +82,7 @@ module.exports = grammar({
     _eq: ($) => '=',
     _operator: ($) => new RegExp('[+\\-*/%\\^:<>]'),
     _number: ($) => /\d+/g,
-    _end: ($) => 'end',
+    end: ($) => 'end',
     _function_keyword: ($) => 'function',
     vector_definition: ($) =>
       seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
