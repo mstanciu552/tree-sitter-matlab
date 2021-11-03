@@ -9,7 +9,7 @@ end
 ---
 
 (source_file
-  (structure (operation (factor (identifier)) (factor (identifier))) (end))
+  (structure (structure_keyword) (operation (factor (identifier)) (factor (identifier))) (end))
 )
 
 ==================
@@ -23,7 +23,7 @@ end
 ---
 
 (source_file
-  (structure (bool (factor (identifier)) (factor (identifier))) (end))
+  (structure (structure_keyword) (bool (factor (identifier)) (factor (identifier))) (end))
 )
 
 ========================
@@ -36,7 +36,7 @@ end
 ---
 
 (source_file
-  (structure (expression (identifier) (operation (factor) (factor (identifier)))) (end))
+  (structure (structure_keyword) (expression (identifier) (operation (factor) (factor (identifier)))) (end))
 )
 
 ===========================
@@ -50,7 +50,7 @@ end
 ---
 
 (source_file
-  (structure (block 
+  (structure (structure_keyword) (block 
     (expression (identifier) (factor))) (end)
   )
 )

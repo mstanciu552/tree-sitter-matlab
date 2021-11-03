@@ -36,7 +36,7 @@
             "name": "structure_keyword",
             "content": {
               "type": "SYMBOL",
-              "name": "_structure_keyword"
+              "name": "structure_keyword"
             }
           },
           {
@@ -94,7 +94,7 @@
             "name": "function_keyword",
             "content": {
               "type": "SYMBOL",
-              "name": "_function_keyword"
+              "name": "function_keyword"
             }
           },
           {
@@ -442,7 +442,7 @@
         }
       }
     },
-    "_structure_keyword": {
+    "structure_keyword": {
       "type": "CHOICE",
       "members": [
         {
@@ -546,7 +546,7 @@
       "type": "STRING",
       "value": "end"
     },
-    "_function_keyword": {
+    "function_keyword": {
       "type": "STRING",
       "value": "function"
     },

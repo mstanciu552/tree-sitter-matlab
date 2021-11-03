@@ -8,7 +8,7 @@ end
 
 ---
 (source_file
-(function_definition
+(function_definition (function_keyword)
   (identifier)
   (identifier)
   (parameter_list (identifier))

@@ -138,6 +138,16 @@
           }
         ]
       },
+      "function_keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_keyword",
+            "named": true
+          }
+        ]
+      },
       "function_name": {
         "multiple": false,
         "required": true,
@@ -270,16 +280,8 @@
         "required": true,
         "types": [
           {
-            "type": "for",
-            "named": false
-          },
-          {
-            "type": "if",
-            "named": false
-          },
-          {
-            "type": "while",
-            "named": false
+            "type": "structure_keyword",
+            "named": true
           }
         ]
       }
@@ -306,6 +308,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "structure_keyword",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "vector_definition",
@@ -357,6 +364,10 @@
   {
     "type": "for",
     "named": false
+  },
+  {
+    "type": "function_keyword",
+    "named": true
   },
   {
     "type": "if",

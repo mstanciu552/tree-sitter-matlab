@@ -17,7 +17,7 @@ module.exports = grammar({
     structure: ($) =>
       prec.right(
         seq(
-          field('structure_keyword', $._structure_keyword),
+          field('structure_keyword', $.structure_keyword),
           choice($.operation, $.bool, $.expression, $._bool_keywords),
           optional($.block),
           field('end', $.end)
@@ -27,7 +27,7 @@ module.exports = grammar({
     function_definition: ($) =>
       prec.right(
         seq(
-          field('function_keyword', $._function_keyword),
+          field('function_keyword', $.function_keyword),
           optional(seq(field('return_variable', $.identifier), $._eq)),
           field('function_name', $.identifier),
           $.parameter_list,
@@ -68,7 +68,7 @@ module.exports = grammar({
     function_name: ($) => $.identifier,
     return_value: ($) => $.identifier,
     block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
-    _structure_keyword: ($) => choice('if', 'for', 'while'),
+    structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => choice(/[a-zA-Z_]+/g, /[a-zA-Z_]+([a-zA-Z_]+)/g), // TODO Check for more complex identifiers
     factor: ($) =>
@@ -83,7 +83,7 @@ module.exports = grammar({
     _operator: ($) => new RegExp('[+\\-*/%\\^:<>]'),
     _number: ($) => /\d+/g,
     end: ($) => 'end',
-    _function_keyword: ($) => 'function',
+    function_keyword: ($) => 'function',
     vector_definition: ($) =>
       seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
     _and: ($) => '&&',
