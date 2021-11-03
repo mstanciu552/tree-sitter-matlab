@@ -17,7 +17,7 @@ module.exports = grammar({
     structure: ($) =>
       prec.right(
         seq(
-          $._structure_keyword,
+          alias('control_structure', $._structure_keyword),
           choice($.operation, $.bool, $.expression),
           $.block
         )
@@ -37,14 +37,17 @@ module.exports = grammar({
     bool: ($) =>
       prec.right(
         1,
-        seq(
-          optional('('),
-          $.factor,
-          optional(seq($._comparator_equal, $.factor)),
-          choice($._and, $._or, $._diff),
-          $.factor,
-          optional(seq($._comparator_equal, $.factor)),
-          optional(')')
+        choice(
+          seq(
+            optional('('),
+            $.factor,
+            optional(seq($._comparator_equal, $.factor)),
+            choice($._and, $._or, $._diff),
+            $.factor,
+            optional(seq($._comparator_equal, $.factor)),
+            optional(')')
+          ),
+          alias('bool_constant', $._bool_keywords)
         )
       ),
     operation: ($) =>

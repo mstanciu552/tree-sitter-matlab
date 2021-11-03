@@ -42,6 +42,10 @@
       "required": true,
       "types": [
         {
+          "type": "_bool_keywords",
+          "named": true
+        },
+        {
           "type": "factor",
           "named": true
         }
@@ -249,6 +253,10 @@
       "required": true,
       "types": [
         {
+          "type": "_structure_keyword",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
@@ -307,11 +315,19 @@
     "named": false
   },
   {
+    "type": "_bool_keywords",
+    "named": true
+  },
+  {
     "type": "_end",
     "named": true
   },
   {
     "type": "_function_keyword",
+    "named": true
+  },
+  {
+    "type": "_structure_keyword",
     "named": true
   },
   {
