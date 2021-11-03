@@ -23,11 +23,11 @@
       "required": true,
       "types": [
         {
-          "type": "_end",
+          "type": "expression",
           "named": true
         },
         {
-          "type": "expression",
+          "type": "structure",
           "named": true
         }
       ]
@@ -319,20 +319,12 @@
     "named": true
   },
   {
-    "type": "_end",
-    "named": true
-  },
-  {
     "type": "_function_keyword",
     "named": true
   },
   {
     "type": "_structure_keyword",
     "named": true
-  },
-  {
-    "type": "end",
-    "named": false
   },
   {
     "type": "false",

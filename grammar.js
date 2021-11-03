@@ -17,7 +17,7 @@ module.exports = grammar({
     structure: ($) =>
       prec.right(
         seq(
-          alias('control_structure', $._structure_keyword),
+          alias('_structure_keyword', $._structure_keyword),
           choice($.operation, $.bool, $.expression),
           $.block
         )
@@ -30,7 +30,8 @@ module.exports = grammar({
           optional(seq($.return_value, $._eq)),
           $.function_name,
           $.parameter_list,
-          optional($.block)
+          optional($.block),
+          $._end
         )
       ),
 
@@ -47,7 +48,7 @@ module.exports = grammar({
             optional(seq($._comparator_equal, $.factor)),
             optional(')')
           ),
-          alias('bool_constant', $._bool_keywords)
+          alias('_bool_keywords', $._bool_keywords)
         )
       ),
     operation: ($) =>
@@ -68,7 +69,7 @@ module.exports = grammar({
     argument_list: ($) => seq('(', repeat(seq($.factor, optional(','))), ')'),
     function_name: ($) => $.identifier,
     return_value: ($) => alias('return_value', $.identifier),
-    block: ($) => seq(repeat($.expression), alias('end', $._end)),
+    block: ($) => prec.right(seq(repeat1(choice($.expression, $.structure)))),
     _structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => choice(/[a-zA-Z_]+/g, /[a-zA-Z_]+([a-zA-Z_]+)/g), // TODO Check for more complex identifiers

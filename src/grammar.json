@@ -35,7 +35,7 @@
             "type": "ALIAS",
             "content": {
               "type": "STRING",
-              "value": "control_structure"
+              "value": "_structure_keyword"
             },
             "named": true,
             "value": "_structure_keyword"
@@ -119,6 +119,10 @@
                 "type": "BLANK"
               }
             ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_end"
           }
         ]
       }
@@ -229,7 +233,7 @@
             "type": "ALIAS",
             "content": {
               "type": "STRING",
-              "value": "bool_constant"
+              "value": "_bool_keywords"
             },
             "named": true,
             "value": "_bool_keywords"
@@ -404,25 +408,29 @@
       "value": "identifier"
     },
     "block": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "expression"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "structure"
+                }
+              ]
+            }
           }
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "STRING",
-            "value": "end"
-          },
-          "named": true,
-          "value": "_end"
-        }
-      ]
+        ]
+      }
     },
     "_structure_keyword": {
       "type": "CHOICE",
