@@ -12,8 +12,6 @@ module.exports = grammar({
         )
       ),
 
-    // TODO Add vector access support
-
     structure: ($) =>
       prec.right(
         seq(

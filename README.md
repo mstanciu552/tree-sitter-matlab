@@ -4,10 +4,8 @@
 
 - [x] Basic grammar
 - [x] Add support for variable definition
-- [ ] Add support for array and matrix definitions
+- [x] Add support for array and matrix definitions
+- [x] Add syntax highlighting
+- [x] Add function call definition
 - [ ] Add support for comments
-- [ ] Add syntax highlighting
 - [ ] Check out class definitions in Matlab
-- [ ] Add function call definition
-
-[Link](https://github.com/)
