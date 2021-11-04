@@ -11,7 +11,7 @@ module.exports = grammar({
           $.function_definition,
           $.function_call,
           $.structure,
-          $.comment
+          field('comment', $.comment)
         )
       ),
 
@@ -58,7 +58,7 @@ module.exports = grammar({
         seq(
           choice(
             field('variable_name', $.identifier),
-            field('vector_access', $.vector_access)
+            field('vector_access', $.function_call)
           ),
           $._eq,
           choice($.operation, $.factor, $.vector_definition),
@@ -68,20 +68,28 @@ module.exports = grammar({
 
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
-    argument_list: ($) => seq('(', repeat(seq($.factor, optional(','))), ')'),
-    function_name: ($) => $.identifier,
+    argument_list: ($) =>
+      seq('(', repeat(seq($.factor, optional(','))), ')', $._end_of_line),
     return_value: ($) => $.identifier,
     block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
-    identifier: ($) => /[a-zA-Z_]+/, // TODO Check for more complex identifiers
-    vector_access: ($) => /[a-zA-Z_]+(\([a-zA-Z_]+\))?/,
+    identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
+    // vector_access: ($) =>
+    //   prec(4, /([a-zA-Z_]+[0-9a-zA-Z]*)+(\(([a-zA-Z_]*[0-9a-zA-Z]*)\))?/),
     factor: ($) =>
       prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
     function_call: ($) =>
-      prec.right(
-        seq($.function_name, $.argument_list, optional($._semi_colon))
+      prec.left(
+        3,
+        seq(
+          field('function_name', $.identifier),
+          $.argument_list,
+          optional($._semi_colon)
+        )
       ),
+
+    vector_access: ($) => seq($.identifier, '(', $.factor, ')'),
 
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
@@ -98,5 +106,6 @@ module.exports = grammar({
     _comparator_equal: ($) => '==',
     _bool_keywords: ($) => choice('true', 'false'),
     comment: ($) => seq('%', /.+/, '\n'),
+    _end_of_line: ($) => choice(';', '\n'),
   },
 });

@@ -23,8 +23,12 @@
             "name": "structure"
           },
           {
-            "type": "SYMBOL",
-            "name": "comment"
+            "type": "FIELD",
+            "name": "comment",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
           }
         ]
       }
@@ -316,7 +320,7 @@
                 "name": "vector_access",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "vector_access"
+                  "name": "function_call"
                 }
               }
             ]
@@ -428,12 +432,12 @@
         {
           "type": "STRING",
           "value": ")"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_end_of_line"
         }
       ]
-    },
-    "function_name": {
-      "type": "SYMBOL",
-      "name": "identifier"
     },
     "return_value": {
       "type": "SYMBOL",
@@ -478,11 +482,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_]+"
-    },
-    "vector_access": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z_]+(\\([a-zA-Z_]+\\))?"
+      "value": "[a-zA-Z_]+[a-zA-Z0-9_]*"
     },
     "factor": {
       "type": "PREC_RIGHT",
@@ -510,14 +510,18 @@
       }
     },
     "function_call": {
-      "type": "PREC_RIGHT",
-      "value": 0,
+      "type": "PREC_LEFT",
+      "value": 3,
       "content": {
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "function_name"
+            "type": "FIELD",
+            "name": "function_name",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
           },
           {
             "type": "SYMBOL",
@@ -537,6 +541,27 @@
           }
         ]
       }
+    },
+    "vector_access": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "factor"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
     },
     "_semi_colon": {
       "type": "STRING",
@@ -651,6 +676,19 @@
         {
           "type": "PATTERN",
           "value": ".+"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
+    },
+    "_end_of_line": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ";"
         },
         {
           "type": "STRING",

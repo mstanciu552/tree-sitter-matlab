@@ -72,7 +72,7 @@
         "required": false,
         "types": [
           {
-            "type": "vector_access",
+            "type": "function_call",
             "named": true
           }
         ]
@@ -123,17 +123,24 @@
   {
     "type": "function_call",
     "named": true,
-    "fields": {},
+    "fields": {
+      "function_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "argument_list",
-          "named": true
-        },
-        {
-          "type": "function_name",
           "named": true
         }
       ]
@@ -200,21 +207,6 @@
     }
   },
   {
-    "type": "function_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "operation",
     "named": true,
     "fields": {},
@@ -247,15 +239,22 @@
   {
     "type": "source_file",
     "named": true,
-    "fields": {},
+    "fields": {
+      "comment": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
         {
           "type": "expression",
           "named": true
@@ -402,10 +401,6 @@
   {
     "type": "true",
     "named": false
-  },
-  {
-    "type": "vector_access",
-    "named": true
   },
   {
     "type": "while",

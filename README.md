@@ -8,5 +8,5 @@
 - [x] Add syntax highlighting
 - [x] Add function call definition
 - [x] Add support for comments
-- [ ] Add numbers in identifier definition
+- [x] Add numbers in identifier definition
 - [ ] Check out class definitions in Matlab
