@@ -297,12 +297,25 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "FIELD",
-            "name": "variable_name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
-            }
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "variable_name",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "vector_access",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "vector_access"
+                }
+              }
+            ]
           },
           {
             "type": "SYMBOL",
@@ -460,17 +473,12 @@
       ]
     },
     "identifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z_]+"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[a-zA-Z_]+([a-zA-Z_]+)"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]+"
+    },
+    "vector_access": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]+(\\([a-zA-Z_]+\\))?"
     },
     "factor": {
       "type": "PREC_RIGHT",

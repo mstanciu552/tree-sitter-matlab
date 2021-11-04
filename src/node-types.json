@@ -54,10 +54,20 @@
     "fields": {
       "variable_name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "vector_access": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "vector_access",
             "named": true
           }
         ]
@@ -198,11 +208,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "operation",
@@ -370,12 +375,20 @@
     "named": true
   },
   {
+    "type": "identifier",
+    "named": true
+  },
+  {
     "type": "if",
     "named": false
   },
   {
     "type": "true",
     "named": false
+  },
+  {
+    "type": "vector_access",
+    "named": true
   },
   {
     "type": "while",

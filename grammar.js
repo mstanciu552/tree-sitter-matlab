@@ -55,7 +55,10 @@ module.exports = grammar({
       prec(
         2,
         seq(
-          field('variable_name', $.identifier),
+          choice(
+            field('variable_name', $.identifier),
+            field('vector_access', $.vector_access)
+          ),
           $._eq,
           choice($.operation, $.factor, $.vector_definition),
           optional($._semi_colon)
@@ -70,7 +73,8 @@ module.exports = grammar({
     block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
-    identifier: ($) => choice(/[a-zA-Z_]+/g, /[a-zA-Z_]+([a-zA-Z_]+)/g), // TODO Check for more complex identifiers
+    identifier: ($) => /[a-zA-Z_]+/, // TODO Check for more complex identifiers
+    vector_access: ($) => /[a-zA-Z_]+(\([a-zA-Z_]+\))?/,
     factor: ($) =>
       prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
     function_call: ($) =>
