@@ -69,7 +69,14 @@ module.exports = grammar({
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
     argument_list: ($) =>
-      seq('(', repeat(seq($.factor, optional(','))), ')', $._end_of_line),
+      prec.right(
+        seq(
+          '(',
+          repeat(seq($.factor, optional(','))),
+          ')',
+          optional($._end_of_line)
+        )
+      ),
     return_value: ($) => $.identifier,
     block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
     structure_keyword: ($) => choice('if', 'for', 'while'),
@@ -89,7 +96,7 @@ module.exports = grammar({
         )
       ),
 
-    vector_access: ($) => seq($.identifier, '(', $.factor, ')'),
+    vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
 
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
