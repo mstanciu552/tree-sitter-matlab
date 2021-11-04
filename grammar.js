@@ -10,7 +10,8 @@ module.exports = grammar({
           $.expression,
           $.function_definition,
           $.function_call,
-          $.structure
+          $.structure,
+          $.comment
         )
       ),
 
@@ -96,5 +97,6 @@ module.exports = grammar({
     _diff: ($) => '!=',
     _comparator_equal: ($) => '==',
     _bool_keywords: ($) => choice('true', 'false'),
+    comment: ($) => seq('%', /.+/, '\n'),
   },
 });

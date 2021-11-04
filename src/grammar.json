@@ -21,6 +21,10 @@
           {
             "type": "SYMBOL",
             "name": "structure"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "comment"
           }
         ]
       }
@@ -634,6 +638,23 @@
         {
           "type": "STRING",
           "value": "false"
+        }
+      ]
+    },
+    "comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "%"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".+"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
         }
       ]
     }
