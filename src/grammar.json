@@ -512,6 +512,10 @@
             {
               "type": "SYMBOL",
               "name": "structure"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_call"
             }
           ]
         }
@@ -582,16 +586,8 @@
             "name": "argument_list"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_semi_colon"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_end_of_line"
           }
         ]
       }
@@ -751,6 +747,10 @@
         {
           "type": "STRING",
           "value": "\n"
+        },
+        {
+          "type": "STRING",
+          "value": "\r"
         }
       ]
     }

@@ -82,7 +82,8 @@ module.exports = grammar({
         $.identifier,
         seq('[', repeat1(seq($.identifier, optional(','))), ']')
       ),
-    block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
+    block: ($) =>
+      prec(3, repeat1(choice($.expression, $.structure, $.function_call))),
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
@@ -94,7 +95,7 @@ module.exports = grammar({
         seq(
           field('function_name', $.identifier),
           $.argument_list,
-          optional($._semi_colon)
+          $._end_of_line
         )
       ),
 
@@ -115,6 +116,6 @@ module.exports = grammar({
     _comparator_equal: ($) => '==',
     _bool_keywords: ($) => choice('true', 'false'),
     comment: ($) => seq('%', /.+/, '\n'),
-    _end_of_line: ($) => choice(';', '\n'),
+    _end_of_line: ($) => choice(';', '\n', '\r'),
   },
 });

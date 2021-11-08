@@ -27,6 +27,10 @@
           "named": true
         },
         {
+          "type": "function_call",
+          "named": true
+        },
+        {
           "type": "structure",
           "named": true
         }
@@ -359,6 +363,10 @@
   },
   {
     "type": "\n",
+    "named": false
+  },
+  {
+    "type": "\r",
     "named": false
   },
   {
