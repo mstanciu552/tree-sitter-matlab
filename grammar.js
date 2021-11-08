@@ -1,8 +1,6 @@
 module.exports = grammar({
   name: 'matlab',
 
-  // TODO Fix queries
-
   rules: {
     source_file: ($) =>
       repeat(
@@ -58,7 +56,8 @@ module.exports = grammar({
         seq(
           choice(
             field('variable_name', $.identifier),
-            field('vector_access', $.function_call)
+            field('vector_access', $.function_call),
+            field('vector', $.vector_definition)
           ),
           $._eq,
           choice($.operation, $.factor, $.vector_definition),
@@ -95,7 +94,7 @@ module.exports = grammar({
         seq(
           field('function_name', $.identifier),
           $.argument_list,
-          $._end_of_line
+          optional($._end_of_line)
         )
       ),
 

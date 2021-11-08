@@ -8,4 +8,4 @@ structure_keyword: (_) @keyword
 "false" @constant.builtin
 
 (identifier) @string
-(function_definition return_variable: (identifier)) @type.builtin
+return_variable: (return_value) @type.builtin

@@ -71,6 +71,16 @@
           }
         ]
       },
+      "vector": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "vector_definition",
+            "named": true
+          }
+        ]
+      },
       "vector_access": {
         "multiple": false,
         "required": false,

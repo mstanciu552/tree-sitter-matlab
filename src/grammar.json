@@ -322,6 +322,14 @@
                   "type": "SYMBOL",
                   "name": "function_call"
                 }
+              },
+              {
+                "type": "FIELD",
+                "name": "vector",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "vector_definition"
+                }
               }
             ]
           },
@@ -586,8 +594,16 @@
             "name": "argument_list"
           },
           {
-            "type": "SYMBOL",
-            "name": "_end_of_line"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_end_of_line"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }

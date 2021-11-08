@@ -45,3 +45,15 @@ a = [1 2 3;1, 2, 3];
 (source_file
   (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
 )
+
+==================
+Vector as variable
+==================
+
+[t, k] = func();
+
+---
+
+(source_file
+  (expression (vector_definition (factor (identifier)) (factor (identifier))) (factor (function_call (identifier) (argument_list))))
+)
