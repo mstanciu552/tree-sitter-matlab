@@ -185,7 +185,7 @@
         "required": false,
         "types": [
           {
-            "type": "identifier",
+            "type": "return_value",
             "named": true
           }
         ]
@@ -228,6 +228,21 @@
     "children": {
       "multiple": true,
       "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "return_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "identifier",

@@ -29,7 +29,7 @@ module.exports = grammar({
       prec.right(
         seq(
           field('function_keyword', $.function_keyword),
-          optional(seq(field('return_variable', $.identifier), $._eq)),
+          optional(seq(field('return_variable', $.return_value), $._eq)),
           field('function_name', $.identifier),
           $.parameter_list,
           optional($.block),
@@ -77,13 +77,15 @@ module.exports = grammar({
           optional($._end_of_line)
         )
       ),
-    return_value: ($) => $.identifier,
+    return_value: ($) =>
+      choice(
+        $.identifier,
+        seq('[', repeat1(seq($.identifier, optional(','))), ']')
+      ),
     block: ($) => prec(3, repeat1(choice($.expression, $.structure))),
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
-    // vector_access: ($) =>
-    //   prec(4, /([a-zA-Z_]+[0-9a-zA-Z]*)+(\(([a-zA-Z_]*[0-9a-zA-Z]*)\))?/),
     factor: ($) =>
       prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
     function_call: ($) =>
