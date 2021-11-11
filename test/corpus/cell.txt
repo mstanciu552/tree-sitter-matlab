@@ -1,0 +1,12 @@
+================================
+Declarations of Cell Arrays
+================================
+A = {};
+A = {1};
+
+---
+
+(source_file
+  (expression (identifier) (cell_definition))
+  (expression (identifier) (cell_definition (factor)))
+)

@@ -60,7 +60,7 @@ module.exports = grammar({
             field('vector', $.vector_definition)
           ),
           $._eq,
-          choice($.operation, $.factor, $.vector_definition),
+          choice($.operation, $.factor, $.vector_definition, $.cell_definition),
           optional($._semi_colon)
         )
       ),
@@ -108,6 +108,8 @@ module.exports = grammar({
     function_keyword: ($) => 'function',
     vector_definition: ($) =>
       seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
+    cell_definition: ($) =>
+      seq('{', repeat(seq($.factor, optional(choice(',', ';')))), '}'),
     _and: ($) => '&&',
     _or: ($) => '||',
     _not: ($) => '!',
