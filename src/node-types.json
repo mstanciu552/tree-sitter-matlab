@@ -53,6 +53,21 @@
     }
   },
   {
+    "type": "cell_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "factor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
@@ -96,6 +111,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "cell_definition",
+          "named": true
+        },
         {
           "type": "factor",
           "named": true
@@ -437,6 +456,14 @@
   },
   {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   }
 ]
