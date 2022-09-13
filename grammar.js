@@ -87,7 +87,7 @@ module.exports = grammar({
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
     factor: ($) =>
-      prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
+      prec.right(choice($._number, $.string, $.identifier, $.operation, $.function_call)),
     function_call: ($) =>
       prec.left(
         3,
@@ -99,6 +99,8 @@ module.exports = grammar({
       ),
 
     vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
+
+    string: ($) => seq('\'', /[^']*/, '\''),
 
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
