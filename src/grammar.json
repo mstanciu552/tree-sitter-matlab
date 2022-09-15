@@ -7,6 +7,14 @@
         "type": "CHOICE",
         "members": [
           {
+            "type": "FIELD",
+            "name": "comment",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "expression"
           },
@@ -21,14 +29,6 @@
           {
             "type": "SYMBOL",
             "name": "structure"
-          },
-          {
-            "type": "FIELD",
-            "name": "comment",
-            "content": {
-              "type": "SYMBOL",
-              "name": "comment"
-            }
           }
         ]
       }
@@ -518,6 +518,14 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "FIELD",
+              "name": "comment",
+              "content": {
+                "type": "SYMBOL",
+                "name": "comment"
+              }
+            },
+            {
               "type": "SYMBOL",
               "name": "expression"
             },
@@ -528,14 +536,6 @@
             {
               "type": "SYMBOL",
               "name": "function_call"
-            },
-            {
-              "type": "FIELD",
-              "name": "comment",
-              "content": {
-                "type": "SYMBOL",
-                "name": "comment"
-              }
             }
           ]
         }

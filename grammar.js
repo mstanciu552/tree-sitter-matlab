@@ -5,11 +5,11 @@ module.exports = grammar({
     source_file: ($) =>
       repeat(
         choice(
+          field('comment', $.comment),
           $.expression,
           $.function_definition,
           $.function_call,
           $.structure,
-          field('comment', $.comment)
         )
       ),
 
@@ -82,7 +82,7 @@ module.exports = grammar({
         seq('[', repeat1(seq($.identifier, optional(','))), ']')
       ),
     block: ($) =>
-      prec(3, repeat1(choice($.expression, $.structure, $.function_call, field('comment', $.comment)))),
+      prec(3, repeat1(choice(field('comment', $.comment), $.expression, $.structure, $.function_call))),
 
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
