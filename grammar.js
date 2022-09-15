@@ -82,7 +82,8 @@ module.exports = grammar({
         seq('[', repeat1(seq($.identifier, optional(','))), ']')
       ),
     block: ($) =>
-      prec(3, repeat1(choice($.expression, $.structure, $.function_call))),
+      prec(3, repeat1(choice($.expression, $.structure, $.function_call, field('comment', $.comment)))),
+
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
