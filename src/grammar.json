@@ -528,6 +528,14 @@
             {
               "type": "SYMBOL",
               "name": "function_call"
+            },
+            {
+              "type": "FIELD",
+              "name": "comment",
+              "content": {
+                "type": "SYMBOL",
+                "name": "comment"
+              }
             }
           ]
         }
