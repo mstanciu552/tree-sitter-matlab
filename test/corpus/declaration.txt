@@ -76,9 +76,11 @@ Declare string
 
 a = '';
 a = 'c';
+b = 'a ''b'' c' 
 
 ---
 (source_file
+  (expression (identifier) (factor (string)))
   (expression (identifier) (factor (string)))
   (expression (identifier) (factor (string))))
 

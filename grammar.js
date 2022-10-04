@@ -101,7 +101,7 @@ module.exports = grammar({
 
     vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
 
-    string: ($) => seq($._single_quote, /[^']*/, $._single_quote),
+    string: ($) => seq($._single_quote, /([^']|(''))*/, $._single_quote),
 
     _single_quote: (_) => '\'',
     _semi_colon: ($) => ';',
