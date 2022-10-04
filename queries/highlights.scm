@@ -9,3 +9,5 @@ structure_keyword: (_) @keyword
 
 (identifier) @string
 return_variable: (return_value) @type.builtin
+
+(string) @string

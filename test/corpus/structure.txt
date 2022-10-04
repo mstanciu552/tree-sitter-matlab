@@ -54,3 +54,21 @@ end
     (expression (identifier) (factor))) (end)
   )
 )
+
+===========================
+Struture with a comment
+===========================
+
+if true
+  % Comment's
+  % Comment's
+end
+
+---
+
+(source_file
+  (structure (structure_keyword) (block 
+    (comment)
+    (comment)) (end)
+  )
+)

@@ -7,6 +7,14 @@
         "type": "CHOICE",
         "members": [
           {
+            "type": "FIELD",
+            "name": "comment",
+            "content": {
+              "type": "SYMBOL",
+              "name": "comment"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "expression"
           },
@@ -21,14 +29,6 @@
           {
             "type": "SYMBOL",
             "name": "structure"
-          },
-          {
-            "type": "FIELD",
-            "name": "comment",
-            "content": {
-              "type": "SYMBOL",
-              "name": "comment"
-            }
           }
         ]
       }
@@ -351,6 +351,10 @@
               {
                 "type": "SYMBOL",
                 "name": "vector_definition"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cell_definition"
               }
             ]
           },
@@ -514,6 +518,14 @@
           "type": "CHOICE",
           "members": [
             {
+              "type": "FIELD",
+              "name": "comment",
+              "content": {
+                "type": "SYMBOL",
+                "name": "comment"
+              }
+            },
+            {
               "type": "SYMBOL",
               "name": "expression"
             },
@@ -559,6 +571,10 @@
           {
             "type": "SYMBOL",
             "name": "_number"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "string"
           },
           {
             "type": "SYMBOL",
@@ -633,6 +649,27 @@
         ]
       }
     },
+    "string": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_single_quote"
+        },
+        {
+          "type": "PATTERN",
+          "value": "([^']|(''))*"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_single_quote"
+        }
+      ]
+    },
+    "_single_quote": {
+      "type": "STRING",
+      "value": "'"
+    },
     "_semi_colon": {
       "type": "STRING",
       "value": ";"
@@ -700,6 +737,64 @@
         {
           "type": "STRING",
           "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_single_quote"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "cell_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "factor"
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ";"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },

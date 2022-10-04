@@ -1,0 +1,41 @@
+=========================================================
+Line Comment
+=========================================================
+
+% Line comment
+
+---
+
+(source_file
+  (comment)
+)
+
+
+=========================================================
+Special charactor comments
+=========================================================
+
+% comment with semi-colon;
+a(); %comment with ' in it
+
+---
+
+(source_file
+  (comment)
+  (function_call (identifier) (argument_list)) (comment)
+)
+
+
+=========================================================
+End of line comment
+=========================================================
+
+a = 5; % Comment at end of line
+
+---
+
+(source_file
+  (expression (identifier) (factor)) (comment)
+)
+
+

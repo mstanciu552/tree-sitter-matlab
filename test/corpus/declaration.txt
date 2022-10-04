@@ -46,6 +46,18 @@ a = [1 2 3;1, 2, 3];
   (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
 )
 
+===================
+Rotated vector declarations
+===================
+
+a = [1 2 3;1, 2, 3]';
+
+---
+
+(source_file
+  (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
+)
+
 ==================
 Vector as variable
 ==================
@@ -57,3 +69,27 @@ Vector as variable
 (source_file
   (expression (vector_definition (factor (identifier)) (factor (identifier))) (factor (function_call (identifier) (argument_list))))
 )
+
+==============
+Declare string
+==============
+
+a = '';
+a = 'c';
+b = 'a ''b'' c' 
+
+---
+(source_file
+  (expression (identifier) (factor (string)))
+  (expression (identifier) (factor (string)))
+  (expression (identifier) (factor (string))))
+
+==============
+Declare char vector
+==============
+
+a = ['b', 'c'];
+
+---
+(source_file
+  (expression (identifier) (vector_definition (factor (string)) (factor (string)))))

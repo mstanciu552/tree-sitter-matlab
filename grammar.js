@@ -5,11 +5,11 @@ module.exports = grammar({
     source_file: ($) =>
       repeat(
         choice(
+          field('comment', $.comment),
           $.expression,
           $.function_definition,
           $.function_call,
           $.structure,
-          field('comment', $.comment)
         )
       ),
 
@@ -82,12 +82,13 @@ module.exports = grammar({
         seq('[', repeat1(seq($.identifier, optional(','))), ']')
       ),
     block: ($) =>
-      prec(3, repeat1(choice($.expression, $.structure, $.function_call))),
+      prec(3, repeat1(choice(field('comment', $.comment), $.expression, $.structure, $.function_call))),
+
     structure_keyword: ($) => choice('if', 'for', 'while'),
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
     factor: ($) =>
-      prec.right(choice($._number, $.identifier, $.operation, $.function_call)),
+      prec.right(choice($._number, $.string, $.identifier, $.operation, $.function_call)),
     function_call: ($) =>
       prec.left(
         3,
@@ -100,6 +101,9 @@ module.exports = grammar({
 
     vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
 
+    string: ($) => seq($._single_quote, /([^']|(''))*/, $._single_quote),
+
+    _single_quote: (_) => '\'',
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
     _operator: ($) => new RegExp('[+\\-*/%\\^:<>]'),
@@ -107,7 +111,7 @@ module.exports = grammar({
     end: ($) => 'end',
     function_keyword: ($) => 'function',
     vector_definition: ($) =>
-      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
+      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']', optional($._single_quote)),
     cell_definition: ($) =>
       seq('{', repeat(seq($.factor, optional(choice(',', ';')))), '}'),
     _and: ($) => '&&',

@@ -17,10 +17,21 @@
   {
     "type": "block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "comment": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "comment",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "expression",
@@ -44,6 +55,21 @@
     "children": {
       "multiple": true,
       "required": true,
+      "types": [
+        {
+          "type": "factor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
       "types": [
         {
           "type": "factor",
@@ -97,6 +123,10 @@
       "required": true,
       "types": [
         {
+          "type": "cell_definition",
+          "named": true
+        },
+        {
           "type": "factor",
           "named": true
         },
@@ -129,6 +159,10 @@
         },
         {
           "type": "operation",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -304,6 +338,11 @@
     }
   },
   {
+    "type": "string",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "structure",
     "named": true,
     "fields": {
@@ -437,6 +476,14 @@
   },
   {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   }
 ]
