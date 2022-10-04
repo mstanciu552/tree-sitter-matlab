@@ -46,6 +46,18 @@ a = [1 2 3;1, 2, 3];
   (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
 )
 
+===================
+Rotated vector declarations
+===================
+
+a = [1 2 3;1, 2, 3]';
+
+---
+
+(source_file
+  (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
+)
+
 ==================
 Vector as variable
 ==================
@@ -71,7 +83,7 @@ a = 'c';
   (expression (identifier) (factor (string))))
 
 ==============
-Declare string vector
+Declare char vector
 ==============
 
 a = ['b', 'c'];

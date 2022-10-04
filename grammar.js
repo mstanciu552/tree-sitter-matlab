@@ -101,8 +101,9 @@ module.exports = grammar({
 
     vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
 
-    string: ($) => seq('\'', /[^']*/, '\''),
+    string: ($) => seq($._single_quote, /[^']*/, $._single_quote),
 
+    _single_quote: (_) => '\'',
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
     _operator: ($) => new RegExp('[+\\-*/%\\^:<>]'),
@@ -110,7 +111,7 @@ module.exports = grammar({
     end: ($) => 'end',
     function_keyword: ($) => 'function',
     vector_definition: ($) =>
-      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']'),
+      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']', optional($._single_quote)),
     cell_definition: ($) =>
       seq('{', repeat(seq($.factor, optional(choice(',', ';')))), '}'),
     _and: ($) => '&&',

@@ -653,18 +653,22 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "'"
+          "type": "SYMBOL",
+          "name": "_single_quote"
         },
         {
           "type": "PATTERN",
           "value": "[^']*"
         },
         {
-          "type": "STRING",
-          "value": "'"
+          "type": "SYMBOL",
+          "name": "_single_quote"
         }
       ]
+    },
+    "_single_quote": {
+      "type": "STRING",
+      "value": "'"
     },
     "_semi_colon": {
       "type": "STRING",
@@ -733,6 +737,18 @@
         {
           "type": "STRING",
           "value": "]"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_single_quote"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
