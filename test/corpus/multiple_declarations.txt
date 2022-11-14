@@ -9,7 +9,7 @@ c = a + 3 * b;
 ---
 
 (source_file
-  (expression (identifier) (factor))
-  (expression (identifier) (operation (factor) (factor (identifier))))
-  (expression (identifier) (operation (factor (identifier)) (factor (operation (factor) (factor (identifier))))))
+  (expression (identifier) (factor (number)))
+  (expression (identifier) (operation (factor (number)) (factor (identifier))))
+  (expression (identifier) (operation (factor (identifier)) (factor (operation (factor (number)) (factor (identifier))))))
 )

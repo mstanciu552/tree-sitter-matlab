@@ -7,7 +7,7 @@ a = 3
 ---
 
 (source_file
-  (expression (identifier) (factor))
+  (expression (identifier) (factor (number)))
 )
 
 ========================================
@@ -19,7 +19,7 @@ a = 3;
 ---
 
 (source_file
-  (expression (identifier) (factor))
+  (expression (identifier) (factor (number)))
 )
 
 ========================================
@@ -31,7 +31,7 @@ a = 3 * f;
 ---
 
 (source_file
-  (expression (identifier) (operation (factor) (factor (identifier))))
+  (expression (identifier) (operation (factor (number)) (factor (identifier))))
 )
 
 ===================
@@ -43,7 +43,7 @@ a = [1 2 3;1, 2, 3];
 ---
 
 (source_file
-  (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
+  (expression (identifier) (vector_definition (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number))))
 )
 
 ===================
@@ -55,7 +55,7 @@ a = [1 2 3;1, 2, 3]';
 ---
 
 (source_file
-  (expression (identifier) (vector_definition (factor) (factor) (factor) (factor) (factor) (factor)))
+  (expression (identifier) (vector_definition (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number))))
 )
 
 ==================

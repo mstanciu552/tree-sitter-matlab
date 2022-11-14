@@ -12,5 +12,5 @@ end
 (function_definition (function_keyword)
   (identifier)
   (parameter_list (identifier))
-  (block (expression (identifier) (factor))) (end)
+  (block (expression (identifier) (factor (number)))) (end)
 ))

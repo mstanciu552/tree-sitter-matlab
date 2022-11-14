@@ -1,0 +1,400 @@
+If statement
+========
+
+if x > y
+
+end
+
+---
+
+(source_file
+  (if_statement (operation (factor (identifier)) (factor (identifier)))  (end))
+)
+
+========
+If statement with operation, single line
+========
+
+if x > y, return, end
+
+---
+
+(source_file
+  (if_statement (operation (factor (identifier)) (factor (identifier))) (block (keyword))  (end))
+)
+
+
+==================
+If statement with bool
+==================
+
+if ~(x && y)
+
+end
+
+---
+
+(source_file
+  (if_statement (bool (factor (identifier)) (factor (identifier))) (end))
+)
+
+
+===============================
+If statement with function not call
+===============================
+
+if ~func()
+
+end
+
+---
+
+(source_file
+  (if_statement (function_call (identifier) (argument_list)) (end))
+)
+
+===========================
+If statement with function call
+===========================
+
+if func()
+
+end
+
+---
+
+(source_file
+  (if_statement (function_call (identifier) (argument_list)) (end))
+)
+
+========================
+for loop with expression
+========================
+
+for i=1:n
+end
+
+---
+
+(source_file
+  (for_statement (expression (identifier) (factor (range (number) (identifier)))) (end))
+)
+
+========================
+Struture with expression
+========================
+
+for i=1:length(1:10)
+end
+
+---
+
+(source_file
+  (for_statement (expression (identifier) (factor (range (number) (function_call
+  (identifier) (argument_list (factor (range (number) (number))))
+  )))) (end))
+)
+
+===========================
+If statement with bool constant
+===========================
+
+if true
+  a = 3
+end
+
+---
+
+(source_file
+  (if_statement (block 
+    (expression (identifier) (factor (number)))) (end)
+  )
+)
+
+===========================
+Struture with a comment
+===========================
+
+if true
+  % Comment's
+  % Comment's
+end
+
+---
+
+(source_file
+  (if_statement
+  (block 
+    (comment)
+    (comment)) (end)
+  )
+)
+
+========
+If-elseif-else
+========
+
+if x > y
+
+elseif false
+
+elseif true
+
+else
+
+end
+
+---
+
+(source_file
+  (if_statement (operation (factor (identifier)) (factor (identifier))) (elseif_statement) (elseif_statement) (else_statement) (end))
+)
+
+========
+While loop
+========
+
+while x > y
+
+end
+
+---
+
+(source_file
+  (while_statement (operation (factor (identifier)) (factor (identifier))) (end))
+)
+
+
+========
+Switch-statement with numbers
+========
+
+switch aa
+case 1
+
+otherwise
+
+end
+
+---
+
+(source_file
+(switch_statement (identifier)
+(case_statement (number))
+(otherwise_statement)
+(end))
+)
+
+========
+Switch-statement with string and cells
+========
+
+switch letter
+case {'a', 'b'}
+
+case 'c'
+
+otherwise
+
+end
+
+---
+
+(source_file
+  (switch_statement (identifier) 
+  (case_statement (cell_definition (factor (string)) (factor (string))))
+  (case_statement (string))
+  (otherwise_statement)
+  (end))
+)
+
+
+========
+If-else
+========
+
+if x > y
+
+else
+
+end
+
+---
+
+(source_file
+  (if_statement (operation (factor (identifier)) (factor (identifier))) (else_statement) (end))
+)
+
+
+========
+Try-catch
+========
+
+try
+  a = b
+catch ME
+  throw(ME)
+end
+
+---
+
+(source_file
+  (try_statement 
+    (block (expression (identifier) (factor (identifier)))) 
+  (catch_statement (identifier) 
+    (block (function_call (identifier) (argument_list (factor (identifier))))))
+  (end))
+)
+
+
+===========================
+Struture with bool constant
+===========================
+
+if true
+  a = 3
+end
+
+---
+
+(source_file
+  (if_statement (block 
+    (expression (identifier) (factor (number)))) (end)
+  )
+)
+
+===========================
+Struture with a comment
+===========================
+
+if true
+  % Comment's
+  % Comment's
+end
+
+---
+
+(source_file
+  (if_statement
+  (block 
+    (comment)
+    (comment)) (end)
+  )
+)
+
+========
+If-elseif-else
+========
+
+if x > y
+
+elseif false
+
+elseif true
+
+else
+
+end
+
+---
+
+(source_file
+  (if_statement (operation (factor (identifier)) (factor (identifier))) (elseif_statement) (elseif_statement) (else_statement) (end))
+)
+
+========
+While loop
+========
+
+while x > y
+
+end
+
+---
+
+(source_file
+  (while_statement (operation (factor (identifier)) (factor (identifier))) (end))
+)
+
+
+========
+Switch-statement with numbers
+========
+
+switch aa
+case 1
+
+otherwise
+
+end
+
+---
+
+(source_file
+(switch_statement (identifier)
+(case_statement (number))
+(otherwise_statement)
+(end))
+)
+
+========
+Switch-statement with string and cells
+========
+
+switch letter
+case {'a', 'b'}
+
+case 'c'
+
+otherwise
+
+end
+
+---
+
+(source_file
+  (switch_statement (identifier) 
+  (case_statement (cell_definition (factor (string)) (factor (string))))
+  (case_statement (string))
+  (otherwise_statement)
+  (end))
+)
+
+
+========
+If-else
+========
+
+if x > y
+
+else
+
+end
+
+---
+
+(source_file
+  (if_statement (operation (factor (identifier)) (factor (identifier))) (else_statement) (end))
+)
+
+
+========
+Try-catch
+========
+
+try
+  a = b
+catch ME
+  throw(ME)
+end
+
+---
+
+(source_file
+  (try_statement 
+    (block (expression (identifier) (factor (identifier)))) 
+  (catch_statement (identifier) 
+    (block (function_call (identifier) (argument_list (factor (identifier))))))
+  (end))
+)
+
