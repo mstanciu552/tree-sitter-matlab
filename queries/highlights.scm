@@ -36,6 +36,11 @@ function_name: (identifier) @function
 (#any-of? @constant.builtin "true" "false")
 )
 
+(
+    (identifier) @constant.builtin
+    (#eq? @constant.builtin "end")
+)
+
 ;; Punctuations
 
 [
@@ -54,6 +59,30 @@ function_name: (identifier) @function
  "{"
  "}"
 ] @punctuation.bracket
+
+;; Operators
+(operation [ ">"
+            "<"
+            "=="
+            "<="
+            ">="
+            "=<"
+            "=>"
+            "~="
+            "*"
+            ".*"
+            "/"
+            "\\"
+            "./"
+            "^"
+            ".^"
+            "+"] @operator)
+
+;; boolean operator
+[
+    "&&"
+    "||"
+] @operator
 
 ;; Number
 (number) @number
