@@ -47,7 +47,9 @@ function_name: (identifier) @function
 (argument_list "," @punctuation.delimiter)
 (vector_definition ["," ";"] @punctuation.delimiter)
 (cell_definition ["," ";"] @punctuation.delimiter)
-":" @punctucation.delimiter
+":" @punctuation.delimiter
+(parameter_list "," @punctuation.delimiter)
+(return_value "," @punctuation.delimiter)
 
 ; ;; Brackets
 
