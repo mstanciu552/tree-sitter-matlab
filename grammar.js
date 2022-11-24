@@ -6,13 +6,13 @@ module.exports = grammar({
   rules: {
     source_file: ($) =>
       repeat(
-        choice(
+        seq(choice(
           field('comment', $.comment),
           $.expression,
           $.function_definition,
           $.function_call,
           $._statements
-        )
+        ), optional($._end_of_line))
       ),
 
     _statements: ($) =>
@@ -29,7 +29,7 @@ module.exports = grammar({
         seq(
           "if",
           optional($._not),
-          field('condition', $._condition),
+          field('condition', $._condition), $._end_of_line,
           optional($.block),
           optional(repeat1($.elseif_statement)),
           optional($.else_statement),
@@ -41,7 +41,7 @@ module.exports = grammar({
       prec.right(
         seq(
           "elseif",
-          field('condition', $._condition),
+          field('condition', $._condition), $._end_of_line,
           optional($.block),
         )
       ),
@@ -50,6 +50,7 @@ module.exports = grammar({
       prec.right(
         seq(
           "else",
+          $._end_of_line,
           optional($.block),
         )
       ),
@@ -59,7 +60,7 @@ module.exports = grammar({
         seq(
           "for",
           optional($._not),
-          $.expression,
+          $.expression, $._end_of_line,
           optional($.block),
           field('endfor', $.end)
         )
@@ -70,7 +71,7 @@ module.exports = grammar({
         seq(
           "while",
           optional($._not),
-          field('condition', $._condition),
+          field('condition', $._condition), $._end_of_line,
           optional($.block),
           field('endwhile', $.end)
         )
@@ -101,6 +102,7 @@ module.exports = grammar({
     try_statement: ($) =>
       prec.right(1,
         seq("try",
+          $._end_of_line,
           optional($.block),
           optional($.catch_statement),
           field('endtry', $.end))),
@@ -116,7 +118,7 @@ module.exports = grammar({
       prec.right(
         seq(
           field('function_keyword', $.function_keyword),
-          optional(seq(field('return_variable', $.return_value), $._eq)),
+          optional(seq(field('return_variable', $.return_value), '=')),
           field('function_name', $.identifier),
           $.parameter_list,
           optional($.block),
@@ -134,13 +136,13 @@ module.exports = grammar({
             choice('&&', '||'),
             $.factor)),
           optional(')'),
-          optional($._end_of_line)
         )
       ),
 
     operation: ($) =>
       prec.right(1, seq(
-        $.factor, $._operator, $.factor, optional($._end_of_line))),
+        $.factor, $._operator, $.factor, 
+      )),
 
     expression: ($) =>
       prec(
@@ -151,21 +153,20 @@ module.exports = grammar({
             field('vector_access', $.function_call),
             field('vector', $.vector_definition)
           ),
-          $._eq,
+          '=',
           choice($.operation, $.factor, $.vector_definition, $.cell_definition),
-          optional($._end_of_line)
         )
       ),
 
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
+
     argument_list: ($) =>
       prec.right(
         seq(
           '(',
           repeat(seq($.factor, optional(','))),
           ')',
-          optional($._end_of_line)
         )
       ),
     return_value: ($) =>
@@ -177,12 +178,14 @@ module.exports = grammar({
     block: ($) =>
       prec(
         3, repeat1(
-          choice(
+          seq(choice(
             field('comment', $.comment),
             $.expression,
             $._statements,
             $.function_call,
-            $.keyword))),
+            $.keyword),
+            optional($._end_of_line)
+          ))),
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
 
@@ -195,7 +198,8 @@ module.exports = grammar({
             $.identifier,
             $.operation,
             $.function_call,
-            $.range), optional($._end_of_line))),
+            $.range), 
+        )),
 
     range: ($) =>
       seq(
@@ -212,7 +216,7 @@ module.exports = grammar({
         seq(
           field('function_name', $.identifier),
           $.argument_list,
-          optional($._end_of_line)
+          // optional($._end_of_line)
         )
       ),
 
@@ -220,7 +224,7 @@ module.exports = grammar({
 
     string: ($) => seq($._single_quote, /([^']|(''))*/, $._single_quote),
 
-    keyword: ($) => seq(choice('return', 'continue', 'break'), optional($._end_of_line)),
+    keyword: ($) => seq(choice('return', 'continue', 'break')),
     _return: (_) => 'return',
     _break: (_) => 'break',
     _continue: (_) => 'continue',
@@ -228,7 +232,6 @@ module.exports = grammar({
     _single_quote: (_) => '\'',
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
-    // _operator: ($) => new RegExp('[+\\-*/%\\^:<>=\.]+'),
     _operator: (_) => choice('>', '<', '==', '<=', '>=', '=<', '=>', '~=', '*', '.*', '/', '\\', './', '^', '.^', '+'),
     number: ($) => /\d+/g,
     end: ($) => 'end',

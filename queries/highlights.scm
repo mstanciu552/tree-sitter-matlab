@@ -43,11 +43,11 @@ function_name: (identifier) @function
 
 ;; Punctuations
 
-[
-  ";"
-  ":"
-  ","
-] @punctuation.delimiter
+[";" ","] @character.special
+(argument_list "," @punctuation.delimiter)
+(vector_definition ["," ";"] @punctuation.delimiter)
+(cell_definition ["," ";"] @punctuation.delimiter)
+":" @punctucation.delimiter
 
 ; ;; Brackets
 
@@ -61,6 +61,7 @@ function_name: (identifier) @function
 ] @punctuation.bracket
 
 ;; Operators
+"=" @operator
 (operation [ ">"
             "<"
             "=="
