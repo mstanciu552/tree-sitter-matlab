@@ -501,25 +501,25 @@
       }
     },
     "_condition": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "operation"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "bool"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_bool_keywords"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_call"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "factor"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_bool_keywords"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "function_call"
+          }
+        ]
+      }
     },
     "function_definition": {
       "type": "PREC_RIGHT",
@@ -602,95 +602,33 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "("
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
             "type": "SYMBOL",
             "name": "factor"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_comparator_equal"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "factor"
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_and"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_or"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_diff"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "factor"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_comparator_equal"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "factor"
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": ")"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "REPEAT1",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "&&"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "||"
+                    }
+                  ]
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "factor"
+                }
+              ]
+            }
           },
           {
             "type": "CHOICE",
@@ -1001,6 +939,18 @@
             "type": "CHOICE",
             "members": [
               {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "SYMBOL",
                 "name": "number"
               },
@@ -1022,7 +972,23 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "bool"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "range"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ")"
+              },
+              {
+                "type": "BLANK"
               }
             ]
           },
@@ -1230,8 +1196,73 @@
       "value": "="
     },
     "_operator": {
-      "type": "PATTERN",
-      "value": "[+\\-*/%\\^:<>]"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "STRING",
+          "value": "=="
+        },
+        {
+          "type": "STRING",
+          "value": "<="
+        },
+        {
+          "type": "STRING",
+          "value": ">="
+        },
+        {
+          "type": "STRING",
+          "value": "=<"
+        },
+        {
+          "type": "STRING",
+          "value": "=>"
+        },
+        {
+          "type": "STRING",
+          "value": "~="
+        },
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "STRING",
+          "value": ".*"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "STRING",
+          "value": "\\"
+        },
+        {
+          "type": "STRING",
+          "value": "./"
+        },
+        {
+          "type": "STRING",
+          "value": "^"
+        },
+        {
+          "type": "STRING",
+          "value": ".^"
+        },
+        {
+          "type": "STRING",
+          "value": "+"
+        }
+      ]
     },
     "number": {
       "type": "PATTERN",

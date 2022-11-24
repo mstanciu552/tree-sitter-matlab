@@ -1,14 +1,15 @@
+========
 If statement
 ========
 
-if x > y
+if x == y
 
 end
 
 ---
 
 (source_file
-  (if_statement (operation (factor (identifier)) (factor (identifier)))  (end))
+  (if_statement (factor (operation (factor (identifier)) (factor (identifier))))  (end))
 )
 
 ========
@@ -20,7 +21,7 @@ if x > y, return, end
 ---
 
 (source_file
-  (if_statement (operation (factor (identifier)) (factor (identifier))) (block (keyword))  (end))
+  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (block (keyword))  (end))
 )
 
 
@@ -147,7 +148,7 @@ end
 ---
 
 (source_file
-  (if_statement (operation (factor (identifier)) (factor (identifier))) (elseif_statement) (elseif_statement) (else_statement) (end))
+  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (elseif_statement) (elseif_statement) (else_statement) (end))
 )
 
 ========
@@ -161,7 +162,7 @@ end
 ---
 
 (source_file
-  (while_statement (operation (factor (identifier)) (factor (identifier))) (end))
+  (while_statement (factor (operation (factor (identifier)) (factor (identifier)))) (end))
 )
 
 
@@ -222,7 +223,7 @@ end
 ---
 
 (source_file
-  (if_statement (operation (factor (identifier)) (factor (identifier))) (else_statement) (end))
+  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (else_statement) (end))
 )
 
 
@@ -299,7 +300,7 @@ end
 ---
 
 (source_file
-  (if_statement (operation (factor (identifier)) (factor (identifier))) (elseif_statement) (elseif_statement) (else_statement) (end))
+  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (elseif_statement) (elseif_statement) (else_statement) (end))
 )
 
 ========
@@ -313,7 +314,7 @@ end
 ---
 
 (source_file
-  (while_statement (operation (factor (identifier)) (factor (identifier))) (end))
+  (while_statement (factor (operation (factor (identifier)) (factor (identifier)))) (end))
 )
 
 
@@ -374,7 +375,9 @@ end
 ---
 
 (source_file
-  (if_statement (operation (factor (identifier)) (factor (identifier))) (else_statement) (end))
+  (if_statement 
+    condition: (factor 
+    (operation (factor (identifier)) (factor (identifier)))) (else_statement) end: (end))
 )
 
 

@@ -23,6 +23,18 @@ a = 3;
 )
 
 ========================================
+Declarations of variables with operation
+========================================
+
+a = 3 == a;
+
+---
+
+(source_file
+  (expression (identifier) (operation (factor (number)) (factor (identifier))))
+)
+
+========================================
 Declarations of variables as computation
 ========================================
 

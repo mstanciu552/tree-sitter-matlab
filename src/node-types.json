@@ -188,15 +188,15 @@
             "named": true
           },
           {
+            "type": "factor",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "operation",
             "named": true
           },
           {
@@ -439,15 +439,15 @@
             "named": true
           },
           {
+            "type": "factor",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "operation",
             "named": true
           },
           {
@@ -725,15 +725,15 @@
             "named": true
           },
           {
+            "type": "factor",
+            "named": true
+          },
+          {
             "type": "false",
             "named": false
           },
           {
             "type": "function_call",
-            "named": true
-          },
-          {
-            "type": "operation",
             "named": true
           },
           {
@@ -777,6 +777,10 @@
     "named": false
   },
   {
+    "type": "&&",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -785,7 +789,31 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": ".*",
+    "named": false
+  },
+  {
+    "type": "./",
+    "named": false
+  },
+  {
+    "type": ".^",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -797,11 +825,47 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=<",
+    "named": false
+  },
+  {
+    "type": "==",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
     "named": false
   },
   {
@@ -885,7 +949,15 @@
     "named": false
   },
   {
+    "type": "||",
+    "named": false
+  },
+  {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "~=",
     "named": false
   }
 ]

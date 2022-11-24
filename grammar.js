@@ -1,8 +1,6 @@
 module.exports = grammar({
   name: 'matlab',
 
-  // extras: ($) => [$.comment, /\s/, $._end_of_line],
-
   word: ($) => $.identifier,
 
   rules: {
@@ -112,7 +110,7 @@ module.exports = grammar({
         seq("catch", optional($.identifier), optional($.block))
       ),
 
-    _condition: ($) => choice($.operation, $.bool, $._bool_keywords, $.function_call),
+    _condition: ($) => prec(1, choice($.factor, $.bool, $._bool_keywords, $.function_call)),
 
     function_definition: ($) =>
       prec.right(
@@ -132,10 +130,9 @@ module.exports = grammar({
         seq(
           optional('('),
           $.factor,
-          optional(seq($._comparator_equal, $.factor)),
-          choice($._and, $._or, $._diff),
-          $.factor,
-          optional(seq($._comparator_equal, $.factor)),
+          repeat1(seq(
+            choice('&&', '||'),
+            $.factor)),
           optional(')'),
           optional($._end_of_line)
         )
@@ -143,7 +140,6 @@ module.exports = grammar({
 
     operation: ($) =>
       prec.right(1, seq(
-        // optional($._not), 
         $.factor, $._operator, $.factor, optional($._end_of_line))),
 
     expression: ($) =>
@@ -191,12 +187,15 @@ module.exports = grammar({
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
 
     factor: ($) =>
-      prec.right(seq(choice($.number,
-        $.string,
-        $.identifier,
-        $.operation,
-        $.function_call,
-        $.range), optional($._end_of_line))),
+      prec.right(
+        seq(
+          choice(
+            $.number,
+            $.string,
+            $.identifier,
+            $.operation,
+            $.function_call,
+            $.range), optional($._end_of_line))),
 
     range: ($) =>
       seq(
@@ -229,7 +228,8 @@ module.exports = grammar({
     _single_quote: (_) => '\'',
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
-    _operator: ($) => new RegExp('[+\\-*/%\\^:<>]'),
+    // _operator: ($) => new RegExp('[+\\-*/%\\^:<>=\.]+'),
+    _operator: (_) => choice('>', '<', '==', '<=', '>=', '=<', '=>', '~=', '*', '.*', '/', '\\', './', '^', '.^', '+'),
     number: ($) => /\d+/g,
     end: ($) => 'end',
     function_keyword: ($) => 'function',
