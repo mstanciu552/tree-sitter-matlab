@@ -12,5 +12,5 @@ end
   (return_value (identifier))
   (identifier)
   (parameter_list (identifier))
-  (block (expression (identifier) (factor))) (end)
+  (block (expression (identifier) (factor (number)))) (end)
 ))
