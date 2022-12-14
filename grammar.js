@@ -222,7 +222,10 @@ module.exports = grammar({
 
     vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
 
-    string: ($) => seq($._single_quote, /([^']|(''))*/, $._single_quote),
+    string: ($) => choice(
+      seq($._double_quote, /([^"]|(""))*/, $._double_quote),
+      seq($._single_quote, /([^']|(''))*/, $._single_quote),
+    ),
 
     keyword: ($) => seq(choice('return', 'continue', 'break')),
     _return: (_) => 'return',
@@ -230,6 +233,7 @@ module.exports = grammar({
     _continue: (_) => 'continue',
 
     _single_quote: (_) => '\'',
+    _double_quote: (_) => '"',
     _semi_colon: ($) => ';',
     _eq: ($) => '=',
     _operator: (_) => choice('>', '<', '==', '<=', '>=', '=<', '=>', '~=', '*', '.*', '/', '\\', './', '^', '.^', '+'),
