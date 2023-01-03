@@ -31,6 +31,23 @@ function_name: (identifier) @function
 
 ["return" "break" "continue"] @keyword.return
 
+
+
+;;;; Classdef
+[
+    "classdef"
+    "properties"
+    "methods"
+    endmethods: (end)
+    endclass: (end)
+    endproperties: (end)
+] @keyword
+
+(class_definition classname: (identifier) @type)
+superclass: (identifier) @type
+
+
+
 (
 (identifier) @constant.builtin
 (#any-of? @constant.builtin "true" "false")

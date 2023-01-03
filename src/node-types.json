@@ -156,6 +156,60 @@
     }
   },
   {
+    "type": "class_definition",
+    "named": true,
+    "fields": {
+      "classname": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "endclass": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      },
+      "superclass": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "methods_definition",
+          "named": true
+        },
+        {
+          "type": "properties_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
@@ -353,6 +407,16 @@
             "named": true
           }
         ]
+      },
+      "superclass": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -492,6 +556,36 @@
     "fields": {}
   },
   {
+    "type": "methods_definition",
+    "named": true,
+    "fields": {
+      "endmethods": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "operation",
     "named": true,
     "fields": {},
@@ -534,6 +628,108 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "properties_definition",
+    "named": true,
+    "fields": {
+      "endproperties": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "property",
+          "named": true
+        },
+        {
+          "type": "property_access",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property",
+    "named": true,
+    "fields": {
+      "property_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "factor",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_access",
+    "named": true,
+    "fields": {
+      "access_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "access_value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -593,6 +789,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "class_definition",
+          "named": true
+        },
         {
           "type": "expression",
           "named": true
@@ -857,6 +1057,10 @@
     "named": false
   },
   {
+    "type": "@",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -882,6 +1086,10 @@
   },
   {
     "type": "catch",
+    "named": false
+  },
+  {
+    "type": "classdef",
     "named": false
   },
   {
@@ -921,11 +1129,19 @@
     "named": false
   },
   {
+    "type": "methods",
+    "named": false
+  },
+  {
     "type": "number",
     "named": true
   },
   {
     "type": "otherwise",
+    "named": false
+  },
+  {
+    "type": "properties",
     "named": false
   },
   {

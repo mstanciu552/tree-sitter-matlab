@@ -11,6 +11,7 @@ module.exports = grammar({
           $.expression,
           $.function_definition,
           $.function_call,
+          $.class_definition,
           $._statements
         ), optional($._end_of_line))
       ),
@@ -126,6 +127,58 @@ module.exports = grammar({
         )
       ),
 
+    class_definition: ($) =>
+      seq('classdef', field('classname', $.identifier),
+        optional(seq('<', field('superclass', $._superclass))),
+        repeat(
+          choice(
+            $.comment,
+            $.properties_definition,
+            $.methods_definition
+          )
+        ),
+        field('endclass', $.end)),
+
+    _superclass: ($) => $.identifier,
+
+    properties_definition: ($) =>
+      seq('properties',
+        optional($.property_access),
+        repeat(
+          choice(
+            $.comment,
+            $.property
+          )),
+        field('endproperties', $.end)),
+
+    property_access: ($) =>
+      seq('(', repeat(seq(
+        field('access_type', $.identifier), '=',
+        field('access_value', $.identifier), optional(','))), ')'),
+
+    property: ($) => seq(field('property_name', $.identifier),
+      optional($._property_size),
+      optional($._property_type),
+      optional($._property_validation),
+      optional(seq('=', $._property_value)),
+      optional($.comment), '\n'),
+
+    _property_size: ($) => seq('(', repeat1(seq(choice($.number, ':'), optional(','))), ')'),
+
+    _property_type: ($) => choice($.identifier),
+
+    _property_validation: ($) => seq('{', repeat1(seq(choice($.identifier, $.function_call), optional(','))) ,'}'),
+    _property_value: ($) => $.factor,
+
+    methods_definition: ($) =>
+      seq('methods',
+        repeat(
+          choice(
+            $.comment,
+            $.function_definition
+          )),
+        field('endmethods', $.end)),
+
     bool: ($) =>
       prec.right(
         1,
@@ -141,7 +194,7 @@ module.exports = grammar({
 
     operation: ($) =>
       prec.right(1, seq(
-        $.factor, $._operator, $.factor, 
+        $.factor, $._operator, $.factor,
       )),
 
     expression: ($) =>
@@ -198,7 +251,7 @@ module.exports = grammar({
             $.identifier,
             $.operation,
             $.function_call,
-            $.range), 
+            $.range),
         )),
 
     range: ($) =>
@@ -214,6 +267,7 @@ module.exports = grammar({
       prec.left(
         3,
         seq(
+          optional(seq(field('superclass', $.identifier), '@')),
           field('function_name', $.identifier),
           $.argument_list,
           // optional($._end_of_line)
