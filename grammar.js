@@ -12,7 +12,8 @@ module.exports = grammar({
           $.function_definition,
           $.function_call,
           $.class_definition,
-          $._statements
+          $._statements,
+          $.struct,
         ), optional($._end_of_line))
       ),
 
@@ -129,7 +130,7 @@ module.exports = grammar({
 
     class_definition: ($) =>
       seq('classdef', field('classname', $.identifier),
-        optional(seq('<', field('superclass', $._superclass))),
+        optional(seq('<', repeat1(seq(field('superclass', $._superclass), optional('&'))))),
         repeat(
           choice(
             $.comment,
@@ -139,7 +140,7 @@ module.exports = grammar({
         ),
         field('endclass', $.end)),
 
-    _superclass: ($) => $.identifier,
+    _superclass: ($) => choice($.identifier, $.struct),
 
     properties_definition: ($) =>
       seq('properties',
@@ -154,7 +155,7 @@ module.exports = grammar({
     property_access: ($) =>
       seq('(', repeat(seq(
         field('access_type', $.identifier), '=',
-        field('access_value', $.identifier), optional(','))), ')'),
+        field('access_value', choice($.identifier, $.string)), optional(','))), ')'),
 
     property: ($) => seq(field('property_name', $.identifier),
       optional($._property_size),
@@ -165,7 +166,7 @@ module.exports = grammar({
 
     _property_size: ($) => seq('(', repeat1(seq(choice($.number, ':'), optional(','))), ')'),
 
-    _property_type: ($) => choice($.identifier),
+    _property_type: ($) => choice($.identifier, $.struct),
 
     _property_validation: ($) => seq('{', repeat1(seq(choice($.identifier, $.function_call), optional(','))) ,'}'),
     _property_value: ($) => $.factor,
@@ -204,12 +205,15 @@ module.exports = grammar({
           choice(
             field('variable_name', $.identifier),
             field('vector_access', $.function_call),
-            field('vector', $.vector_definition)
+            field('vector', $.vector_definition),
+            field('struct', $.struct)
           ),
           '=',
           choice($.operation, $.factor, $.vector_definition, $.cell_definition),
         )
       ),
+
+    struct: ($) => seq(repeat1(seq($.identifier, '.')), choice($.identifier)),
 
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
@@ -236,6 +240,7 @@ module.exports = grammar({
             $.expression,
             $._statements,
             $.function_call,
+            $.struct,
             $.keyword),
             optional($._end_of_line)
           ))),
@@ -251,7 +256,8 @@ module.exports = grammar({
             $.identifier,
             $.operation,
             $.function_call,
-            $.range),
+            $.range,
+            $.struct),
         )),
 
     range: ($) =>
@@ -268,7 +274,7 @@ module.exports = grammar({
         3,
         seq(
           optional(seq(field('superclass', $.identifier), '@')),
-          field('function_name', $.identifier),
+          field('function_name', choice($.identifier, $.struct)),
           $.argument_list,
           // optional($._end_of_line)
         )

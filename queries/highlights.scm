@@ -44,9 +44,12 @@ function_name: (identifier) @function
 ] @keyword
 
 (class_definition classname: (identifier) @type)
-superclass: (identifier) @type
+superclass: [(struct (identifier)) (identifier)] @type
 
+(class_definition ["&"
+                   "<"] @character)
 
+"@" @character
 
 (
 (identifier) @constant.builtin
@@ -60,16 +63,9 @@ superclass: (identifier) @type
 
 ;; Punctuations
 
-[";" ","] @character.special
-(argument_list "," @punctuation.delimiter)
-(vector_definition ["," ";"] @punctuation.delimiter)
-(cell_definition ["," ";"] @punctuation.delimiter)
-":" @punctuation.delimiter
-(parameter_list "," @punctuation.delimiter)
-(return_value "," @punctuation.delimiter)
+[";" "," "." ":"] @punctuation.delimiter
 
 ; ;; Brackets
-
 [
  "("
  ")"

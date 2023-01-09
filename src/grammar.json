@@ -37,6 +37,10 @@
               {
                 "type": "SYMBOL",
                 "name": "_statements"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "struct"
               }
             ]
           },
@@ -670,11 +674,31 @@
                   "value": "<"
                 },
                 {
-                  "type": "FIELD",
-                  "name": "superclass",
+                  "type": "REPEAT1",
                   "content": {
-                    "type": "SYMBOL",
-                    "name": "_superclass"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "FIELD",
+                        "name": "superclass",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_superclass"
+                        }
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "&"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 }
               ]
@@ -715,8 +739,17 @@
       ]
     },
     "_superclass": {
-      "type": "SYMBOL",
-      "name": "identifier"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "struct"
+        }
+      ]
     },
     "properties_definition": {
       "type": "SEQ",
@@ -791,8 +824,17 @@
                 "type": "FIELD",
                 "name": "access_value",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "string"
+                    }
+                  ]
                 }
               },
               {
@@ -954,6 +996,10 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "struct"
         }
       ]
     },
@@ -1155,6 +1201,14 @@
                   "type": "SYMBOL",
                   "name": "vector_definition"
                 }
+              },
+              {
+                "type": "FIELD",
+                "name": "struct",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "struct"
+                }
               }
             ]
           },
@@ -1185,6 +1239,36 @@
           }
         ]
       }
+    },
+    "struct": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "STRING",
+                "value": "."
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          ]
+        }
+      ]
     },
     "parameter_list": {
       "type": "SEQ",
@@ -1343,6 +1427,10 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "struct"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "keyword"
                 }
               ]
@@ -1399,6 +1487,10 @@
               {
                 "type": "SYMBOL",
                 "name": "range"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "struct"
               }
             ]
           }
@@ -1495,8 +1587,17 @@
             "type": "FIELD",
             "name": "function_name",
             "content": {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "struct"
+                }
+              ]
             }
           },
           {

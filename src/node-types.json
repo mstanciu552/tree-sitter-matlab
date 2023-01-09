@@ -54,6 +54,10 @@
           "named": true
         },
         {
+          "type": "struct",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -180,11 +184,15 @@
         ]
       },
       "superclass": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "struct",
             "named": true
           }
         ]
@@ -275,6 +283,16 @@
     "type": "expression",
     "named": true,
     "fields": {
+      "struct": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "struct",
+            "named": true
+          }
+        ]
+      },
       "variable_name": {
         "multiple": false,
         "required": false,
@@ -360,6 +378,10 @@
         {
           "type": "string",
           "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
         }
       ]
     }
@@ -404,6 +426,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "struct",
             "named": true
           }
         ]
@@ -702,6 +728,10 @@
         {
           "type": "number",
           "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
         }
       ]
     }
@@ -726,6 +756,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
             "named": true
           }
         ]
@@ -814,6 +848,10 @@
           "named": true
         },
         {
+          "type": "struct",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -832,6 +870,21 @@
     "type": "string",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "struct",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "switch_statement",
@@ -977,6 +1030,10 @@
     "named": false
   },
   {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "&&",
     "named": false
   },
@@ -998,6 +1055,10 @@
   },
   {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {

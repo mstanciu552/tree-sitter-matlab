@@ -37,7 +37,7 @@ end
 Class definition with superclass
 ================================
 
-classdef MyClass < MySuperClass
+classdef MyClass < MySuperClass & another.class
   properties
 
   end
@@ -56,6 +56,7 @@ end
   (class_definition 
     classname: (identifier)
     superclass: (identifier)
+    superclass: (struct (identifier) (identifier))
     (properties_definition
     endproperties: (end))
     (methods_definition
@@ -85,6 +86,7 @@ classdef PropertyValidation
         ValueA int
         ValueB (1,1) int = 0
         ValueC {mustBeNumeric}
+        ValueD some.type
     end
 end
 
@@ -98,5 +100,6 @@ end
     (property (identifier) 
     (number) (number) (identifier) (factor (number)))
     (property (identifier) (identifier))
+    (property (identifier) (struct (identifier) (identifier)))
     (end))
     (end)))
