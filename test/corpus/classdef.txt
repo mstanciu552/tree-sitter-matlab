@@ -68,8 +68,8 @@ end
         (block (expression 
                   variable_name: (identifier) (factor 
                   (function_call
-                    superclass: (identifier)
                     function_name: (identifier)
+                    superclass: (identifier)
                     (argument_list)))))
       end: (end))
     endmethods: (end))

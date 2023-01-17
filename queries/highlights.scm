@@ -6,6 +6,8 @@ function_keyword: (function_keyword) @keyword.function
 function_name: (identifier) @function
 (end) @function)
 
+function_name: (identifier) @function.call
+
 (parameter_list (identifier) @parameter)
 
 [

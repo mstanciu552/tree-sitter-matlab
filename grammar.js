@@ -213,7 +213,7 @@ module.exports = grammar({
         )
       ),
 
-    struct: ($) => seq(repeat1(seq($.identifier, '.')), choice($.identifier)),
+    struct: ($) => seq(repeat1(seq($.identifier, '.')), $.identifier),
 
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
@@ -273,8 +273,8 @@ module.exports = grammar({
       prec.left(
         3,
         seq(
-          optional(seq(field('superclass', $.identifier), '@')),
           field('function_name', choice($.identifier, $.struct)),
+          optional(seq('@', field('superclass', $.identifier))),
           $.argument_list,
           // optional($._end_of_line)
         )
