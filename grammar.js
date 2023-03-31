@@ -135,6 +135,8 @@ module.exports = grammar({
           choice(
             $.comment,
             $.properties_definition,
+            $.events_definition,
+            $.enum_definition,
             $.methods_definition
           )
         ),
@@ -144,7 +146,7 @@ module.exports = grammar({
 
     properties_definition: ($) =>
       seq('properties',
-        optional($.property_access),
+        optional($.block_access),
         repeat(
           choice(
             $.comment,
@@ -152,7 +154,7 @@ module.exports = grammar({
           )),
         field('endproperties', $.end)),
 
-    property_access: ($) =>
+    block_access: ($) =>
       seq('(', repeat(seq(
         field('access_type', $.identifier), '=',
         field('access_value', choice($.identifier, $.string)), optional(','))), ')'),
@@ -179,6 +181,27 @@ module.exports = grammar({
             $.function_definition
           )),
         field('endmethods', $.end)),
+
+    events_definition: ($) =>
+      seq('events',
+        optional($.block_access),
+        repeat(
+          choice(
+            $.comment,
+            $.identifier
+          )),
+        field('endevents', $.end)),
+
+    enum_definition: ($) =>
+      seq('enumeration',
+        repeat(
+          choice(
+            $.comment,
+            $.enum
+          )),
+        field('endenum', $.end)),
+
+    enum: ($) => seq($.identifier, '(', $.factor,')'),
 
     bool: ($) =>
       prec.right(

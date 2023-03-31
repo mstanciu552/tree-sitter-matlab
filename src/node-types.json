@@ -73,6 +73,36 @@
     }
   },
   {
+    "type": "block_access",
+    "named": true,
+    "fields": {
+      "access_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "access_value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "bool",
     "named": true,
     "fields": {},
@@ -207,6 +237,14 @@
           "named": true
         },
         {
+          "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "events_definition",
+          "named": true
+        },
+        {
           "type": "methods_definition",
           "named": true
         },
@@ -274,6 +312,89 @@
       "types": [
         {
           "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "factor",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_definition",
+    "named": true,
+    "fields": {
+      "endenum": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "events_definition",
+    "named": true,
+    "fields": {
+      "endevents": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block_access",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         }
       ]
@@ -676,15 +797,15 @@
       "required": false,
       "types": [
         {
+          "type": "block_access",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
         {
           "type": "property",
-          "named": true
-        },
-        {
-          "type": "property_access",
           "named": true
         }
       ]
@@ -734,36 +855,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "property_access",
-    "named": true,
-    "fields": {
-      "access_type": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "access_value": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -1168,6 +1259,14 @@
   {
     "type": "end",
     "named": true
+  },
+  {
+    "type": "enumeration",
+    "named": false
+  },
+  {
+    "type": "events",
+    "named": false
   },
   {
     "type": "false",

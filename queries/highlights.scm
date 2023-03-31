@@ -40,9 +40,13 @@ function_name: (identifier) @function.call
     "classdef"
     "properties"
     "methods"
+    "enumeration"
+    "events"
     endmethods: (end)
     endclass: (end)
     endproperties: (end)
+    endevents: (end)
+    endenum: (end)
 ] @keyword
 
 (class_definition classname: (identifier) @type)

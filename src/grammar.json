@@ -723,6 +723,14 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "events_definition"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "enum_definition"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "methods_definition"
               }
             ]
@@ -763,7 +771,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "property_access"
+              "name": "block_access"
             },
             {
               "type": "BLANK"
@@ -796,7 +804,7 @@
         }
       ]
     },
-    "property_access": {
+    "block_access": {
       "type": "SEQ",
       "members": [
         {
@@ -1083,6 +1091,105 @@
             "type": "SYMBOL",
             "name": "end"
           }
+        }
+      ]
+    },
+    "events_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "events"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "block_access"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "comment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "endevents",
+          "content": {
+            "type": "SYMBOL",
+            "name": "end"
+          }
+        }
+      ]
+    },
+    "enum_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "enumeration"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "comment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "enum"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "endenum",
+          "content": {
+            "type": "SYMBOL",
+            "name": "end"
+          }
+        }
+      ]
+    },
+    "enum": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "factor"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },

@@ -12,6 +12,15 @@ classdef MyClass
     end
   end
 
+  events (ListenAccess = protected)
+
+  end
+
+  enumeration
+    yes (1)
+    no  (2)
+  end
+
 end
 
 ---
@@ -29,6 +38,15 @@ end
         (parameter_list)
       end: (end))
     endmethods: (end))
+    (events_definition 
+          (block_access 
+              access_type: (identifier) 
+              access_value: (identifier))
+    endevents: (end))
+    (enum_definition
+      (enum (identifier) (factor (number)))
+      (enum (identifier) (factor (number)))
+    endenum: (end))
     endclass: (end))
 )
 
@@ -94,7 +112,7 @@ end
 
 (source_file
   (class_definition (identifier)
-    (properties_definition (property_access (identifier) (identifier) (identifier) (identifier))
+    (properties_definition (block_access (identifier) (identifier) (identifier) (identifier))
     (comment)
     (property (identifier) (identifier))
     (property (identifier) 
