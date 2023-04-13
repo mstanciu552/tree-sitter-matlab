@@ -557,7 +557,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "factor"
+            "name": "_factor"
           },
           {
             "type": "SYMBOL",
@@ -825,25 +825,38 @@
                 }
               },
               {
-                "type": "STRING",
-                "value": "="
-              },
-              {
-                "type": "FIELD",
-                "name": "access_value",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "identifier"
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "string"
-                    }
-                  ]
-                }
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "="
+                      },
+                      {
+                        "type": "FIELD",
+                        "name": "access_value",
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "string"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
               },
               {
                 "type": "CHOICE",
@@ -1059,7 +1072,7 @@
     },
     "_property_value": {
       "type": "SYMBOL",
-      "name": "factor"
+      "name": "_factor"
     },
     "methods_definition": {
       "type": "SEQ",
@@ -1185,7 +1198,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "factor"
+          "name": "_factor"
         },
         {
           "type": "STRING",
@@ -1213,7 +1226,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "factor"
+            "name": "_factor"
           },
           {
             "type": "REPEAT1",
@@ -1235,7 +1248,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "factor"
+                  "name": "_factor"
                 }
               ]
             }
@@ -1263,7 +1276,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "factor"
+            "name": "_factor"
           },
           {
             "type": "SYMBOL",
@@ -1271,7 +1284,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "factor"
+            "name": "_factor"
           }
         ]
       }
@@ -1332,15 +1345,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "factor"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "vector_definition"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "cell_definition"
+                "name": "_factor"
               }
             ]
           }
@@ -1439,7 +1444,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "factor"
+                  "name": "_factor"
                 },
                 {
                   "type": "CHOICE",
@@ -1570,7 +1575,7 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_]+[a-zA-Z0-9_]*"
     },
-    "factor": {
+    "_factor": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -1606,6 +1611,26 @@
               {
                 "type": "SYMBOL",
                 "name": "struct"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "vector_definition"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cell_definition"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_single_quote"
+              },
+              {
+                "type": "BLANK"
               }
             ]
           }
@@ -1919,7 +1944,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "factor"
+                "name": "_factor"
               },
               {
                 "type": "CHOICE",
@@ -1948,18 +1973,6 @@
         {
           "type": "STRING",
           "value": "]"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_single_quote"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
         }
       ]
     },
@@ -1977,7 +1990,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "factor"
+                "name": "_factor"
               },
               {
                 "type": "CHOICE",

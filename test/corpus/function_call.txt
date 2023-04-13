@@ -6,7 +6,7 @@ disp(32312);
 
 ---
 
-(source_file (function_call (identifier) (argument_list (factor (number)))))
+(source_file (function_call (identifier) (argument_list (number))))
 
 ==================================
 Function call inside of expression
@@ -18,9 +18,9 @@ a = disp(322134);
 
 (source_file 
   (expression (identifier) 
-    (factor (function_call 
+    (function_call 
       (identifier)
-      (argument_list (factor (number))))
-    )
+      (argument_list (number)))
+    
   )
 )

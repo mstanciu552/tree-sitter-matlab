@@ -114,7 +114,7 @@ module.exports = grammar({
         seq("catch", optional($.identifier), optional($.block))
       ),
 
-    _condition: ($) => prec(1, choice($.factor, $.bool, $._bool_keywords, $.function_call)),
+    _condition: ($) => prec(1, choice($._factor, $.bool, $._bool_keywords, $.function_call)),
 
     function_definition: ($) =>
       prec.right(
@@ -156,8 +156,9 @@ module.exports = grammar({
 
     block_access: ($) =>
       seq('(', repeat(seq(
-        field('access_type', $.identifier), '=',
-        field('access_value', choice($.identifier, $.string)), optional(','))), ')'),
+        field('access_type', $.identifier), 
+        optional(seq('=', field('access_value', choice($.identifier, $.string)))), 
+        optional(','))), ')'),
 
     property: ($) => seq(field('property_name', $.identifier),
       optional($._property_size),
@@ -171,7 +172,7 @@ module.exports = grammar({
     _property_type: ($) => choice($.identifier, $.struct),
 
     _property_validation: ($) => seq('{', repeat1(seq(choice($.identifier, $.function_call), optional(','))) ,'}'),
-    _property_value: ($) => $.factor,
+    _property_value: ($) => $._factor,
 
     methods_definition: ($) =>
       seq('methods',
@@ -201,24 +202,24 @@ module.exports = grammar({
           )),
         field('endenum', $.end)),
 
-    enum: ($) => seq($.identifier, '(', $.factor,')'),
+    enum: ($) => seq($.identifier, '(', $._factor,')'),
 
     bool: ($) =>
       prec.right(
         1,
         seq(
           optional('('),
-          $.factor,
+          $._factor,
           repeat1(seq(
             choice('&&', '||'),
-            $.factor)),
+            $._factor)),
           optional(')'),
         )
       ),
 
     operation: ($) =>
       prec.right(1, seq(
-        $.factor, $._operator, $.factor,
+        $._factor, $._operator, $._factor,
       )),
 
     expression: ($) =>
@@ -232,7 +233,7 @@ module.exports = grammar({
             field('struct', $.struct)
           ),
           '=',
-          choice($.operation, $.factor, $.vector_definition, $.cell_definition),
+          choice($.operation, $._factor),
         )
       ),
 
@@ -246,7 +247,7 @@ module.exports = grammar({
       prec.right(
         seq(
           '(',
-          repeat(seq($.factor, optional(','))),
+          repeat(seq($._factor, optional(','))),
           ')',
         )
       ),
@@ -271,7 +272,7 @@ module.exports = grammar({
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
 
-    factor: ($) =>
+    _factor: ($) =>
       prec.right(
         seq(
           choice(
@@ -281,7 +282,10 @@ module.exports = grammar({
             $.operation,
             $.function_call,
             $.range,
-            $.struct),
+            $.struct,
+            $.vector_definition,
+            $.cell_definition
+          ), optional($._single_quote),
         )),
 
     range: ($) =>
@@ -325,9 +329,9 @@ module.exports = grammar({
     end: ($) => 'end',
     function_keyword: ($) => 'function',
     vector_definition: ($) =>
-      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']', optional($._single_quote)),
+      seq('[', repeat(seq($._factor, optional(choice(',', ';')))), ']'),
     cell_definition: ($) =>
-      seq('{', repeat(seq($.factor, optional(choice(',', ';')))), '}'),
+      seq('{', repeat(seq($._factor, optional(choice(',', ';')))), '}'),
     _and: ($) => '&&',
     _or: ($) => '||',
     _not: ($) => '~',

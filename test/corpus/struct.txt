@@ -8,7 +8,7 @@ a.b = 1;
 
 (source_file
   (expression (struct (identifier) (identifier))
-    (factor (number)))
+    (number))
 )
 
 
@@ -22,7 +22,7 @@ a = b.c;
 
 (source_file
   (expression (identifier)
-    (factor (struct (identifier) (identifier))))
+    (struct (identifier) (identifier)))
 )
 
 =============
@@ -35,7 +35,7 @@ a = b.c(1).d;
 
 (source_file
   (expression (identifier)
-    (factor (struct (identifier) (vector_access (identifier) (argument_list (factor (number)))) (identifier))))
+    (struct (identifier) (vector_access (identifier) (argument_list (number))) (identifier)))
 )
 
 
@@ -48,7 +48,7 @@ name.space.disp(32312);
 ---
 
 (source_file
-  (struct (identifier) (identifier) (vector_access (identifier) (argument_list (factor (number))))))
+  (struct (identifier) (identifier) (vector_access (identifier) (argument_list (number)))))
 
 
 

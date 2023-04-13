@@ -44,8 +44,8 @@ end
               access_value: (identifier))
     endevents: (end))
     (enum_definition
-      (enum (identifier) (factor (number)))
-      (enum (identifier) (factor (number)))
+      (enum (identifier) (number))
+      (enum (identifier) (number))
     endenum: (end))
     endclass: (end))
 )
@@ -84,11 +84,11 @@ end
         function_name: (identifier)
         (parameter_list)
         (block (expression 
-                  variable_name: (identifier) (factor 
+                  variable_name: (identifier) 
                   (function_call
                     function_name: (identifier)
                     superclass: (identifier)
-                    (argument_list)))))
+                    (argument_list))))
       end: (end))
     endmethods: (end))
     endclass: (end))
@@ -106,6 +106,10 @@ classdef PropertyValidation
         ValueC {mustBeNumeric}
         ValueD some.type
     end
+
+    properties (Constant)
+      VALUEF = [1 2]
+    end
 end
 
 ---
@@ -116,8 +120,11 @@ end
     (comment)
     (property (identifier) (identifier))
     (property (identifier) 
-    (number) (number) (identifier) (factor (number)))
+    (number) (number) (identifier) (number))
     (property (identifier) (identifier))
     (property (identifier) (struct (identifier) (identifier)))
     (end))
+    (properties_definition (block_access (identifier))
+      (property (identifier) (vector_definition (number) (number)))
+      (end))
     (end)))
