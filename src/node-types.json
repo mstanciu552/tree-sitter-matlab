@@ -548,10 +548,6 @@
           {
             "type": "identifier",
             "named": true
-          },
-          {
-            "type": "struct",
-            "named": true
           }
         ]
       },
@@ -973,6 +969,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "vector_access",
+          "named": true
         }
       ]
     }
@@ -1036,6 +1036,25 @@
         },
         {
           "type": "catch_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vector_access",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         }
       ]

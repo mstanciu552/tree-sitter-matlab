@@ -25,6 +25,19 @@ a = b.c;
     (factor (struct (identifier) (identifier))))
 )
 
+=============
+Struct with indexing
+=============
+
+a = b.c(1).d;
+
+---
+
+(source_file
+  (expression (identifier)
+    (factor (struct (identifier) (vector_access (identifier) (argument_list (factor (number)))) (identifier))))
+)
+
 
 =============
 Struct with function call
@@ -35,7 +48,7 @@ name.space.disp(32312);
 ---
 
 (source_file
-  (function_call (struct (identifier) (identifier) (identifier)) (argument_list (factor (number))))
-)
+  (struct (identifier) (identifier) (vector_access (identifier) (argument_list (factor (number))))))
+
 
 

@@ -1357,7 +1357,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "_struct_element"
               },
               {
                 "type": "STRING",
@@ -1368,7 +1368,20 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_struct_element"
+        }
+      ]
+    },
+    "_struct_element": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
           "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vector_access"
         }
       ]
     },
@@ -1669,10 +1682,6 @@
                 {
                   "type": "SYMBOL",
                   "name": "identifier"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "struct"
                 }
               ]
             }
@@ -1720,16 +1729,8 @@
             "name": "identifier"
           },
           {
-            "type": "STRING",
-            "value": "("
-          },
-          {
             "type": "SYMBOL",
-            "name": "factor"
-          },
-          {
-            "type": "STRING",
-            "value": ")"
+            "name": "argument_list"
           }
         ]
       }
