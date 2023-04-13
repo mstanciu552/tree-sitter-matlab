@@ -1,0 +1,130 @@
+================================
+Simple class definition
+================================
+
+classdef MyClass
+  properties
+
+  end
+
+  methods
+    function obj = MyClass()
+    end
+  end
+
+  events (ListenAccess = protected)
+
+  end
+
+  enumeration
+    yes (1)
+    no  (2)
+  end
+
+end
+
+---
+
+(source_file
+  (class_definition 
+    classname: (identifier)
+    (properties_definition
+    endproperties: (end))
+    (methods_definition
+      (function_definition 
+        function_keyword: (function_keyword)
+        return_variable: (return_value (identifier))
+        function_name: (identifier)
+        (parameter_list)
+      end: (end))
+    endmethods: (end))
+    (events_definition 
+          (block_access 
+              access_type: (identifier) 
+              access_value: (identifier))
+    endevents: (end))
+    (enum_definition
+      (enum (identifier) (number))
+      (enum (identifier) (number))
+    endenum: (end))
+    endclass: (end))
+)
+
+
+================================
+Class definition with superclass
+================================
+
+classdef MyClass < MySuperClass & another.class
+  properties
+
+  end
+
+  methods
+    function obj = MyClass()
+      obj = obj@MySuperClass();
+    end
+  end
+
+end
+
+---
+
+(source_file
+  (class_definition 
+    classname: (identifier)
+    superclass: (identifier)
+    superclass: (struct (identifier) (identifier))
+    (properties_definition
+    endproperties: (end))
+    (methods_definition
+      (function_definition 
+        function_keyword: (function_keyword)
+        return_variable: (return_value (identifier))
+        function_name: (identifier)
+        (parameter_list)
+        (block (expression 
+                  variable_name: (identifier) 
+                  (function_call
+                    function_name: (identifier)
+                    superclass: (identifier)
+                    (argument_list))))
+      end: (end))
+    endmethods: (end))
+    endclass: (end))
+)
+
+===============================
+Property Validation, Access
+===============================
+
+classdef PropertyValidation
+    properties (GetAccess = public, SetAccess = private)
+        % Commentary in the properties block
+        ValueA int
+        ValueB (1,1) int = 0
+        ValueC {mustBeNumeric}
+        ValueD some.type
+    end
+
+    properties (Constant)
+      VALUEF = [1 2]
+    end
+end
+
+---
+
+(source_file
+  (class_definition (identifier)
+    (properties_definition (block_access (identifier) (identifier) (identifier) (identifier))
+    (comment)
+    (property (identifier) (identifier))
+    (property (identifier) 
+    (number) (number) (identifier) (number))
+    (property (identifier) (identifier))
+    (property (identifier) (struct (identifier) (identifier)))
+    (end))
+    (properties_definition (block_access (identifier))
+      (property (identifier) (vector_definition (number) (number)))
+      (end))
+    (end)))

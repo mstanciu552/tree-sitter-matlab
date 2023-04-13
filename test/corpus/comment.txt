@@ -35,7 +35,7 @@ a = 5; % Comment at end of line
 ---
 
 (source_file
-  (expression (identifier) (factor (number))) (comment)
+  (expression (identifier) (number)) (comment)
 )
 
 

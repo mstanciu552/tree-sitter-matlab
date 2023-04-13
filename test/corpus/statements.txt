@@ -9,7 +9,7 @@ end
 ---
 
 (source_file
-  (if_statement (factor (operation (factor (identifier)) (factor (identifier))))  (end))
+  (if_statement (operation (identifier) (identifier))  (end))
 )
 
 ========
@@ -21,7 +21,7 @@ if x > y, return, end
 ---
 
 (source_file
-  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (block (keyword))  (end))
+  (if_statement (operation (identifier) (identifier)) (block (keyword))  (end))
 )
 
 
@@ -36,7 +36,7 @@ end
 ---
 
 (source_file
-  (if_statement (bool (factor (identifier)) (factor (identifier))) (end))
+  (if_statement (bool (identifier) (identifier)) (end))
 )
 
 
@@ -78,7 +78,7 @@ end
 ---
 
 (source_file
-  (for_statement (expression (identifier) (factor (range (number) (identifier)))) (end))
+  (for_statement (expression (identifier) (range (number) (identifier))) (end))
 )
 
 ========================
@@ -91,9 +91,9 @@ end
 ---
 
 (source_file
-  (for_statement (expression (identifier) (factor (range (number) (function_call
-  (identifier) (argument_list (factor (range (number) (number))))
-  )))) (end))
+  (for_statement (expression (identifier) (range (number) (function_call
+  (identifier) (argument_list (range (number) (number)))
+  ))) (end))
 )
 
 ===========================
@@ -108,7 +108,7 @@ end
 
 (source_file
   (if_statement (block 
-    (expression (identifier) (factor (number)))) (end)
+    (expression (identifier) (number))) (end)
   )
 )
 
@@ -148,7 +148,7 @@ end
 ---
 
 (source_file
-  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (elseif_statement) (elseif_statement) (else_statement) (end))
+  (if_statement (operation (identifier) (identifier)) (elseif_statement) (elseif_statement) (else_statement) (end))
 )
 
 ========
@@ -162,7 +162,7 @@ end
 ---
 
 (source_file
-  (while_statement (factor (operation (factor (identifier)) (factor (identifier)))) (end))
+  (while_statement (operation (identifier) (identifier)) (end))
 )
 
 
@@ -203,7 +203,7 @@ end
 
 (source_file
   (switch_statement (identifier) 
-  (case_statement (cell_definition (factor (string)) (factor (string))))
+  (case_statement (cell_definition (string) (string)))
   (case_statement (string))
   (otherwise_statement)
   (end))
@@ -223,7 +223,7 @@ end
 ---
 
 (source_file
-  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (else_statement) (end))
+  (if_statement (operation (identifier) (identifier)) (else_statement) (end))
 )
 
 
@@ -241,9 +241,9 @@ end
 
 (source_file
   (try_statement 
-    (block (expression (identifier) (factor (identifier)))) 
+    (block (expression (identifier) (identifier))) 
   (catch_statement (identifier) 
-    (block (function_call (identifier) (argument_list (factor (identifier))))))
+    (block (function_call (identifier) (argument_list (identifier)))))
   (end))
 )
 
@@ -260,7 +260,7 @@ end
 
 (source_file
   (if_statement (block 
-    (expression (identifier) (factor (number)))) (end)
+    (expression (identifier) (number))) (end)
   )
 )
 
@@ -300,7 +300,7 @@ end
 ---
 
 (source_file
-  (if_statement (factor (operation (factor (identifier)) (factor (identifier)))) (elseif_statement) (elseif_statement) (else_statement) (end))
+  (if_statement (operation (identifier) (identifier)) (elseif_statement) (elseif_statement) (else_statement) (end))
 )
 
 ========
@@ -314,7 +314,7 @@ end
 ---
 
 (source_file
-  (while_statement (factor (operation (factor (identifier)) (factor (identifier)))) (end))
+  (while_statement (operation (identifier) (identifier)) (end))
 )
 
 
@@ -355,7 +355,7 @@ end
 
 (source_file
   (switch_statement (identifier) 
-  (case_statement (cell_definition (factor (string)) (factor (string))))
+  (case_statement (cell_definition (string) (string)))
   (case_statement (string))
   (otherwise_statement)
   (end))
@@ -376,8 +376,8 @@ end
 
 (source_file
   (if_statement 
-    condition: (factor 
-    (operation (factor (identifier)) (factor (identifier)))) (else_statement) end: (end))
+    condition: 
+    (operation (identifier) (identifier)) (else_statement) end: (end))
 )
 
 
@@ -395,9 +395,9 @@ end
 
 (source_file
   (try_statement 
-    (block (expression (identifier) (factor (identifier)))) 
+    (block (expression (identifier) (identifier))) 
   (catch_statement (identifier) 
-    (block (function_call (identifier) (argument_list (factor (identifier))))))
+    (block (function_call (identifier) (argument_list (identifier)))))
   (end))
 )
 

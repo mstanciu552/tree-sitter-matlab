@@ -11,7 +11,9 @@ module.exports = grammar({
           $.expression,
           $.function_definition,
           $.function_call,
-          $._statements
+          $.class_definition,
+          $._statements,
+          $.struct,
         ), optional($._end_of_line))
       ),
 
@@ -112,7 +114,7 @@ module.exports = grammar({
         seq("catch", optional($.identifier), optional($.block))
       ),
 
-    _condition: ($) => prec(1, choice($.factor, $.bool, $._bool_keywords, $.function_call)),
+    _condition: ($) => prec(1, choice($._factor, $.bool, $._bool_keywords, $.function_call)),
 
     function_definition: ($) =>
       prec.right(
@@ -126,22 +128,98 @@ module.exports = grammar({
         )
       ),
 
+    class_definition: ($) =>
+      seq('classdef', field('classname', $.identifier),
+        optional(seq('<', repeat1(seq(field('superclass', $._superclass), optional('&'))))),
+        repeat(
+          choice(
+            $.comment,
+            $.properties_definition,
+            $.events_definition,
+            $.enum_definition,
+            $.methods_definition
+          )
+        ),
+        field('endclass', $.end)),
+
+    _superclass: ($) => choice($.identifier, $.struct),
+
+    properties_definition: ($) =>
+      seq('properties',
+        optional($.block_access),
+        repeat(
+          choice(
+            $.comment,
+            $.property
+          )),
+        field('endproperties', $.end)),
+
+    block_access: ($) =>
+      seq('(', repeat(seq(
+        field('access_type', $.identifier), 
+        optional(seq('=', field('access_value', choice($.identifier, $.string)))), 
+        optional(','))), ')'),
+
+    property: ($) => seq(field('property_name', $.identifier),
+      optional($._property_size),
+      optional($._property_type),
+      optional($._property_validation),
+      optional(seq('=', $._property_value)),
+      optional($.comment), '\n'),
+
+    _property_size: ($) => seq('(', repeat1(seq(choice($.number, ':'), optional(','))), ')'),
+
+    _property_type: ($) => choice($.identifier, $.struct),
+
+    _property_validation: ($) => seq('{', repeat1(seq(choice($.identifier, $.function_call), optional(','))) ,'}'),
+    _property_value: ($) => $._factor,
+
+    methods_definition: ($) =>
+      seq('methods',
+        repeat(
+          choice(
+            $.comment,
+            $.function_definition
+          )),
+        field('endmethods', $.end)),
+
+    events_definition: ($) =>
+      seq('events',
+        optional($.block_access),
+        repeat(
+          choice(
+            $.comment,
+            $.identifier
+          )),
+        field('endevents', $.end)),
+
+    enum_definition: ($) =>
+      seq('enumeration',
+        repeat(
+          choice(
+            $.comment,
+            $.enum
+          )),
+        field('endenum', $.end)),
+
+    enum: ($) => seq($.identifier, '(', $._factor,')'),
+
     bool: ($) =>
       prec.right(
         1,
         seq(
           optional('('),
-          $.factor,
+          $._factor,
           repeat1(seq(
             choice('&&', '||'),
-            $.factor)),
+            $._factor)),
           optional(')'),
         )
       ),
 
     operation: ($) =>
       prec.right(1, seq(
-        $.factor, $._operator, $.factor, 
+        $._factor, $._operator, $._factor,
       )),
 
     expression: ($) =>
@@ -151,12 +229,16 @@ module.exports = grammar({
           choice(
             field('variable_name', $.identifier),
             field('vector_access', $.function_call),
-            field('vector', $.vector_definition)
+            field('vector', $.vector_definition),
+            field('struct', $.struct)
           ),
           '=',
-          choice($.operation, $.factor, $.vector_definition, $.cell_definition),
+          choice($.operation, $._factor),
         )
       ),
+
+    struct: ($) => seq(repeat1(seq($._struct_element, '.')), $._struct_element),
+    _struct_element: ($) => choice($.identifier, $.vector_access),
 
     parameter_list: ($) =>
       seq('(', repeat(seq($.identifier, optional(','))), ')'),
@@ -165,7 +247,7 @@ module.exports = grammar({
       prec.right(
         seq(
           '(',
-          repeat(seq($.factor, optional(','))),
+          repeat(seq($._factor, optional(','))),
           ')',
         )
       ),
@@ -183,13 +265,14 @@ module.exports = grammar({
             $.expression,
             $._statements,
             $.function_call,
+            $.struct,
             $.keyword),
             optional($._end_of_line)
           ))),
 
     identifier: ($) => /[a-zA-Z_]+[a-zA-Z0-9_]*/,
 
-    factor: ($) =>
+    _factor: ($) =>
       prec.right(
         seq(
           choice(
@@ -198,7 +281,11 @@ module.exports = grammar({
             $.identifier,
             $.operation,
             $.function_call,
-            $.range), 
+            $.range,
+            $.struct,
+            $.vector_definition,
+            $.cell_definition
+          ), optional($._single_quote),
         )),
 
     range: ($) =>
@@ -214,13 +301,14 @@ module.exports = grammar({
       prec.left(
         3,
         seq(
-          field('function_name', $.identifier),
+          field('function_name', choice($.identifier)),
+          optional(seq('@', field('superclass', $.identifier))),
           $.argument_list,
           // optional($._end_of_line)
         )
       ),
 
-    vector_access: ($) => prec.left(seq($.identifier, '(', $.factor, ')')),
+    vector_access: ($) => prec.left(seq($.identifier, $.argument_list)),
 
     string: ($) => choice(
       seq($._double_quote, /([^"]|(""))*/, $._double_quote),
@@ -241,9 +329,9 @@ module.exports = grammar({
     end: ($) => 'end',
     function_keyword: ($) => 'function',
     vector_definition: ($) =>
-      seq('[', repeat(seq($.factor, optional(choice(',', ';')))), ']', optional($._single_quote)),
+      seq('[', repeat(seq($._factor, optional(choice(',', ';')))), ']'),
     cell_definition: ($) =>
-      seq('{', repeat(seq($.factor, optional(choice(',', ';')))), '}'),
+      seq('{', repeat(seq($._factor, optional(choice(',', ';')))), '}'),
     _and: ($) => '&&',
     _or: ($) => '||',
     _not: ($) => '~',

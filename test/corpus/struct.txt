@@ -1,0 +1,54 @@
+=============
+Struct assign value
+=============
+
+a.b = 1;
+
+---
+
+(source_file
+  (expression (struct (identifier) (identifier))
+    (number))
+)
+
+
+=============
+expression with struct
+=============
+
+a = b.c;
+
+---
+
+(source_file
+  (expression (identifier)
+    (struct (identifier) (identifier)))
+)
+
+=============
+Struct with indexing
+=============
+
+a = b.c(1).d;
+
+---
+
+(source_file
+  (expression (identifier)
+    (struct (identifier) (vector_access (identifier) (argument_list (number))) (identifier)))
+)
+
+
+=============
+Struct with function call
+=============
+
+name.space.disp(32312);
+
+---
+
+(source_file
+  (struct (identifier) (identifier) (vector_access (identifier) (argument_list (number)))))
+
+
+

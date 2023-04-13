@@ -7,7 +7,7 @@ a = 3
 ---
 
 (source_file
-  (expression (identifier) (factor (number)))
+  (expression (identifier) (number))
 )
 
 ========================================
@@ -19,7 +19,7 @@ a = 3;
 ---
 
 (source_file
-  (expression (identifier) (factor (number)))
+  (expression (identifier) (number))
 )
 
 ========================================
@@ -31,7 +31,7 @@ a = 3 == a;
 ---
 
 (source_file
-  (expression (identifier) (operation (factor (number)) (factor (identifier))))
+  (expression (identifier) (operation (number) (identifier)))
 )
 
 ========================================
@@ -43,7 +43,7 @@ a = 3 * f;
 ---
 
 (source_file
-  (expression (identifier) (operation (factor (number)) (factor (identifier))))
+  (expression (identifier) (operation (number) (identifier)))
 )
 
 ===================
@@ -55,7 +55,7 @@ a = [1 2 3;1, 2, 3];
 ---
 
 (source_file
-  (expression (identifier) (vector_definition (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number))))
+  (expression (identifier) (vector_definition (number) (number) (number) (number) (number) (number)))
 )
 
 ===================
@@ -67,7 +67,7 @@ a = [1 2 3;1, 2, 3]';
 ---
 
 (source_file
-  (expression (identifier) (vector_definition (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number)) (factor (number))))
+  (expression (identifier) (vector_definition (number) (number) (number) (number) (number) (number)))
 )
 
 ==================
@@ -79,7 +79,7 @@ Vector as variable
 ---
 
 (source_file
-  (expression (vector_definition (factor (identifier)) (factor (identifier))) (factor (function_call (identifier) (argument_list))))
+  (expression (vector_definition (identifier) (identifier)) (function_call (identifier) (argument_list)))
 )
 
 ==============
@@ -92,9 +92,9 @@ b = 'a ''b'' c'
 
 ---
 (source_file
-  (expression (identifier) (factor (string)))
-  (expression (identifier) (factor (string)))
-  (expression (identifier) (factor (string))))
+  (expression (identifier) (string))
+  (expression (identifier) (string))
+  (expression (identifier) (string)))
 
 ==============
 Declare char vector
@@ -104,4 +104,4 @@ a = ['b', 'c'];
 
 ---
 (source_file
-  (expression (identifier) (vector_definition (factor (string)) (factor (string)))))
+  (expression (identifier) (vector_definition (string) (string))))

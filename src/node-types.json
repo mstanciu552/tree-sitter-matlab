@@ -8,7 +8,39 @@
       "required": false,
       "types": [
         {
-          "type": "factor",
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
           "named": true
         }
       ]
@@ -54,6 +86,10 @@
           "named": true
         },
         {
+          "type": "struct",
+          "named": true
+        },
+        {
           "type": "switch_statement",
           "named": true
         },
@@ -69,6 +105,36 @@
     }
   },
   {
+    "type": "block_access",
+    "named": true,
+    "fields": {
+      "access_type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "access_value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "bool",
     "named": true,
     "fields": {},
@@ -77,7 +143,39 @@
       "required": true,
       "types": [
         {
-          "type": "factor",
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
           "named": true
         }
       ]
@@ -149,7 +247,105 @@
       "required": false,
       "types": [
         {
-          "type": "factor",
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_definition",
+    "named": true,
+    "fields": {
+      "classname": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "endclass": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      },
+      "superclass": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "events_definition",
+          "named": true
+        },
+        {
+          "type": "methods_definition",
+          "named": true
+        },
+        {
+          "type": "properties_definition",
           "named": true
         }
       ]
@@ -188,7 +384,7 @@
             "named": true
           },
           {
-            "type": "factor",
+            "type": "cell_definition",
             "named": true
           },
           {
@@ -200,8 +396,36 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "operation",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
             "type": "true",
             "named": false
+          },
+          {
+            "type": "vector_definition",
+            "named": true
           }
         ]
       }
@@ -218,9 +442,130 @@
     }
   },
   {
+    "type": "enum",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_definition",
+    "named": true,
+    "fields": {
+      "endenum": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "events_definition",
+    "named": true,
+    "fields": {
+      "endevents": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block_access",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {
+      "struct": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "struct",
+            "named": true
+          }
+        ]
+      },
       "variable_name": {
         "multiple": false,
         "required": false,
@@ -261,29 +606,6 @@
           "named": true
         },
         {
-          "type": "factor",
-          "named": true
-        },
-        {
-          "type": "operation",
-          "named": true
-        },
-        {
-          "type": "vector_definition",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "factor",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
           "type": "function_call",
           "named": true
         },
@@ -305,6 +627,14 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
           "named": true
         }
       ]
@@ -347,6 +677,16 @@
       "function_name": {
         "multiple": false,
         "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "superclass": {
+        "multiple": false,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -439,7 +779,7 @@
             "named": true
           },
           {
-            "type": "factor",
+            "type": "cell_definition",
             "named": true
           },
           {
@@ -451,8 +791,36 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "operation",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
             "type": "true",
             "named": false
+          },
+          {
+            "type": "vector_definition",
+            "named": true
           }
         ]
       },
@@ -492,6 +860,36 @@
     "fields": {}
   },
   {
+    "type": "methods_definition",
+    "named": true,
+    "fields": {
+      "endmethods": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "operation",
     "named": true,
     "fields": {},
@@ -500,7 +898,39 @@
       "required": true,
       "types": [
         {
-          "type": "factor",
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
           "named": true
         }
       ]
@@ -531,6 +961,102 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "properties_definition",
+    "named": true,
+    "fields": {
+      "endproperties": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "end",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block_access",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "property",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property",
+    "named": true,
+    "fields": {
+      "property_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
           "named": true
         }
       ]
@@ -594,6 +1120,10 @@
       "required": false,
       "types": [
         {
+          "type": "class_definition",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -611,6 +1141,10 @@
         },
         {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "struct",
           "named": true
         },
         {
@@ -632,6 +1166,25 @@
     "type": "string",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "struct",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "vector_access",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "switch_statement",
@@ -698,6 +1251,25 @@
     }
   },
   {
+    "type": "vector_access",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "vector_definition",
     "named": true,
     "fields": {},
@@ -706,7 +1278,39 @@
       "required": false,
       "types": [
         {
-          "type": "factor",
+          "type": "cell_definition",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "range",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "struct",
+          "named": true
+        },
+        {
+          "type": "vector_definition",
           "named": true
         }
       ]
@@ -725,7 +1329,7 @@
             "named": true
           },
           {
-            "type": "factor",
+            "type": "cell_definition",
             "named": true
           },
           {
@@ -737,8 +1341,36 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "operation",
+            "named": true
+          },
+          {
+            "type": "range",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "struct",
+            "named": true
+          },
+          {
             "type": "true",
             "named": false
+          },
+          {
+            "type": "vector_definition",
+            "named": true
           }
         ]
       },
@@ -777,6 +1409,10 @@
     "named": false
   },
   {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "&&",
     "named": false
   },
@@ -798,6 +1434,10 @@
   },
   {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {
@@ -857,6 +1497,10 @@
     "named": false
   },
   {
+    "type": "@",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -885,6 +1529,10 @@
     "named": false
   },
   {
+    "type": "classdef",
+    "named": false
+  },
+  {
     "type": "continue",
     "named": false
   },
@@ -899,6 +1547,14 @@
   {
     "type": "end",
     "named": true
+  },
+  {
+    "type": "enumeration",
+    "named": false
+  },
+  {
+    "type": "events",
+    "named": false
   },
   {
     "type": "false",
@@ -921,11 +1577,19 @@
     "named": false
   },
   {
+    "type": "methods",
+    "named": false
+  },
+  {
     "type": "number",
     "named": true
   },
   {
     "type": "otherwise",
+    "named": false
+  },
+  {
+    "type": "properties",
     "named": false
   },
   {

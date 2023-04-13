@@ -6,6 +6,8 @@ function_keyword: (function_keyword) @keyword.function
 function_name: (identifier) @function
 (end) @function)
 
+function_name: (identifier) @function.call
+
 (parameter_list (identifier) @parameter)
 
 [
@@ -31,6 +33,30 @@ function_name: (identifier) @function
 
 ["return" "break" "continue"] @keyword.return
 
+
+
+;;;; Classdef
+[
+    "classdef"
+    "properties"
+    "methods"
+    "enumeration"
+    "events"
+    endmethods: (end)
+    endclass: (end)
+    endproperties: (end)
+    endevents: (end)
+    endenum: (end)
+] @keyword
+
+(class_definition classname: (identifier) @type)
+superclass: [(struct (identifier)) (identifier)] @type
+
+(class_definition ["&"
+                   "<"] @character)
+
+"@" @character
+
 (
 (identifier) @constant.builtin
 (#any-of? @constant.builtin "true" "false")
@@ -43,16 +69,9 @@ function_name: (identifier) @function
 
 ;; Punctuations
 
-[";" ","] @character.special
-(argument_list "," @punctuation.delimiter)
-(vector_definition ["," ";"] @punctuation.delimiter)
-(cell_definition ["," ";"] @punctuation.delimiter)
-":" @punctuation.delimiter
-(parameter_list "," @punctuation.delimiter)
-(return_value "," @punctuation.delimiter)
+[";" "," "." ":"] @punctuation.delimiter
 
 ; ;; Brackets
-
 [
  "("
  ")"

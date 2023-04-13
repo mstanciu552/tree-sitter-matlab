@@ -8,5 +8,5 @@ A = {1};
 
 (source_file
   (expression (identifier) (cell_definition))
-  (expression (identifier) (cell_definition (factor (number))))
+  (expression (identifier) (cell_definition (number)))
 )
